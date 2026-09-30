@@ -1,0 +1,411 @@
+/* ============================================
+   AI REAL ESTATE — LUMENIX Single Screen
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+}
+
+:root {
+  --cyan: #00e5ff;
+  --purple: #a78bfa;
+  --gold: #e8c468;
+  --text: #f0f4fa;
+  --text-dim: #b0bcd0;
+  --border: rgba(255, 255, 255, 0.12);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #05050a;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   VIDEO BACKGROUND
+   ============================================ */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -3;
+  filter: brightness(0.95) saturate(1.2) contrast(1.05);
+  pointer-events: none;
+  transform: scale(1.02);
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(180deg,
+    rgba(5, 5, 10, 0.35) 0%,
+    rgba(5, 5, 10, 0.05) 45%,
+    rgba(5, 5, 10, 0.55) 100%);
+  pointer-events: none;
+}
+
+.bg-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(5, 5, 10, 0.5) 100%);
+  pointer-events: none;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: calc(100% - 36px);
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 22px;
+  background: rgba(10, 10, 20, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+
+.nav-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.4);
+}
+
+.nav-logo svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-text { display: flex; flex-direction: column; }
+
+.nav-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-sub {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+
+.nav-links { display: flex; align-items: center; gap: 22px; }
+
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.25s;
+}
+
+.nav-links a:not(.nav-cta):hover { color: var(--cyan); }
+
+.nav-cta {
+  padding: 9px 20px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(167, 139, 250, 0.15));
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.nav-cta:hover {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(167, 139, 250, 0.3));
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   STAGE (One screen)
+   ============================================ */
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px;
+  text-align: center;
+}
+
+/* ============================================
+   CENTER MEGA TITLE
+   ============================================ */
+.center-stage {
+  position: relative;
+  z-index: 5;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.mega-title {
+  font-size: clamp(3.5rem, 17vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  filter: drop-shadow(0 15px 50px rgba(0, 0, 0, 0.7));
+}
+
+.mega-title .line-1 {
+  background: linear-gradient(180deg, #ffffff 0%, #c4ccda 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mega-title .line-2.accent {
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 60px rgba(0, 229, 255, 0.4));
+}
+
+.sub-title {
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  color: #d0d8e4;
+  font-weight: 500;
+  max-width: 620px;
+  line-height: 1.8;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.01em;
+}
+
+/* ============================================
+   ROUND BUTTON (top-right in RTL)
+   ============================================ */
+.round-btn {
+  position: fixed;
+  top: 105px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff5533, #ff3366);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 12px 32px rgba(255, 60, 80, 0.5);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 50;
+}
+
+.round-btn:hover {
+  transform: scale(1.12) rotate(-10deg);
+  box-shadow: 0 18px 45px rgba(255, 60, 80, 0.7);
+}
+
+.round-btn svg {
+  width: 26px;
+  height: 26px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================
+   TAGLINE (top-left in RTL)
+   ============================================ */
+.tagline {
+  position: fixed;
+  top: 120px;
+  left: 40px;
+  max-width: 300px;
+  text-align: right;
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  font-weight: 500;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+  z-index: 50;
+}
+
+.tagline strong {
+  display: block;
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.tagline-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 11px 24px;
+  background: linear-gradient(135deg, #ff5533, #ff3366);
+  color: #fff;
+  border-radius: 11px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(255, 80, 50, 0.5);
+  transition: all 0.3s;
+}
+
+.tagline-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(255, 80, 50, 0.7);
+}
+
+/* ============================================
+   BOTTOM BAR
+   ============================================ */
+.bottom-bar {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 60px);
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 16px 26px;
+  background: rgba(10, 15, 25, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  z-index: 50;
+}
+
+.brand-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.brand-item:hover { color: #fff; }
+
+.brand-item svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--cyan);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.5));
+}
+
+/* ============================================
+   MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  .navbar {
+    top: 12px;
+    padding: 10px 16px;
+    width: calc(100% - 24px);
+  }
+
+  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-sub { display: none; }
+  .nav-logo { width: 38px; height: 38px; }
+
+  .stage { padding: 90px 20px 110px; }
+
+  .mega-title {
+    font-size: clamp(3rem, 22vw, 7rem);
+    line-height: 0.92;
+  }
+
+  .sub-title {
+    font-size: 0.85rem;
+    max-width: 90%;
+  }
+
+  .round-btn {
+    top: 85px;
+    right: 18px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .round-btn svg { width: 22px; height: 22px; }
+
+  .tagline {
+    top: 145px;
+    left: 18px;
+    right: 18px;
+    max-width: none;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+
+  .tagline strong { font-size: 0.92rem; }
+
+  .bottom-bar {
+    bottom: 16px;
+    width: calc(100% - 28px);
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    padding: 14px 18px;
+  }
+
+  .brand-item { font-size: 0.72rem; }
+  .brand-item svg { width: 15px; height: 15px; }
+}
+
+@media (max-height: 700px) {
+  .mega-title { font-size: clamp(2.8rem, 14vw, 9rem); }
+  .tagline { font-size: 0.85rem; }
+  .stage { padding: 80px 20px 90px; }
+    }
