@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#05050a">
+<title>تحلیل املاک — AI Real Estate</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link rel="stylesheet" href="chat-style.css">
+</head>
+<body style="--accent: #3b82f6; --accent-2: #00e5ff; --accent-rgb: 59, 130, 246;">
+
+<video class="bg-video" autoplay muted loop playsinline preload="auto" webkit-playsinline>
+  <source src="assets/property-bg.mp4" type="video/mp4">
+</video>
+
+<div class="bg-overlay"></div>
+<div class="bg-vignette"></div>
+<div class="bg-scan"></div>
+
+<header class="topbar">
+  <div class="tb-left">
+    <div class="tb-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div class="tb-text">
+      <span class="tb-title">تحلیل املاک</span>
+      <span class="tb-sub">PROPERTY ANALYSIS</span>
+    </div>
+  </div>
+  <div class="tb-actions">
+    <button class="tb-btn" onclick="clearChat()" title="گفتگوی جدید">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="tb-btn" title="بازگشت">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+  </div>
+</header>
+
+<main class="chat-shell">
+  <div class="chat-stream" id="chatStream">
+    <div class="welcome" id="welcome">
+
+      <!-- 3D ROTATING GALLERY -->
+      <div class="gallery-stage" id="galleryStage">
+        <div class="gallery-ring" id="galleryRing">
+
+          <div class="g-card" data-title="آپارتمان لوکس" data-desc="تهران، زعفرانیه" data-img="assets/prop-1.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">آپارتمان لوکس</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+          <div class="g-card" data-title="ویلا دوبلکس" data-desc="لواسان، ۴۵۰ متر" data-img="assets/prop-2.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">ویلا دوبلکس</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+          <div class="g-card" data-title="برج مسکونی" data-desc="تهران، ونک" data-img="assets/prop-3.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">برج مسکونی</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+          <div class="g-card" data-title="خانه کلاسیک" data-desc="اصفهان، جلفا" data-img="assets/prop-4.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">خانه کلاسیک</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+          <div class="g-card" data-title="پنت‌هاوس" data-desc="کیش، ۳۲۰ متر" data-img="assets/prop-5.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">پنت‌هاوس</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+          <div class="g-card" data-title="زمین مسکونی" data-desc="کرج، ۱۰۰۰ متر" data-img="assets/prop-6.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">زمین مسکونی</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+          <div class="g-card" data-title="دفتر اداری" data-desc="تهران، سعادت‌آباد" data-img="assets/prop-7.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">دفتر اداری</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+          <div class="g-card" data-title="مغازه تجاری" data-desc="شیراز، زند" data-img="assets/prop-8.jpg">
+            <div class="g-inner">
+              <div class="g-face"><span class="g-title">مغازه تجاری</span></div>
+              <div class="g-back">Click to chat</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TITLE -->
+      <h2>تحلیل <span class="accent-grad">املاک</span> هوشمند</h2>
+      <p>ارزیابی دقیق قیمت، بررسی سند، کاربری، مشاعات و تحلیل بازار منطقه‌ای.</p>
+
+    </div>
+  </div>
+
+  <div class="composer">
+    <div class="input-row">
+      <textarea id="messageInput" placeholder="سوال خود را بنویسید..." rows="1"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24" id="sendIcon"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <div class="loader" id="loader"></div>
+      </button>
+    </div>
+  </div>
+</main>
+
+<script>
+  const WEBHOOK_URL = 'https://mragent.app.n8n.cloud/webhook/chat';
+  const CONTEXT = 'real_estate';
+
+  const chatStream = document.getElementById('chatStream');
+  const welcome = document.getElementById('welcome');
+  const messageInput = document.getElementById('messageInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const sendIcon = document.getElementById('sendIcon');
+  const loader = document.getElementById('loader');
+
+  function cleanOutput(raw) {
+    if (!raw) return '';
+    let out = raw.trim();
+    out = out.replace(/```html\s*/gi, '').replace(/```\s*/g, '');
+    return out;
+  }
+
+  messageInput.addEventListener('input', () => {
+    messageInput.style.height = 'auto';
+    messageInput.style.height = Math.min(messageInput.scrollHeight, 160) + 'px';
+  });
+
+  messageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  function addMessage(content, type) {
+    if (welcome && welcome.style.display !== 'none') welcome.style.display = 'none';
+    const msg = document.createElement('div');
+    msg.className = 'msg ' + type;
+
+    if (type === 'bot') {
+      msg.innerHTML = cleanOutput(content);
+    } else {
+      msg.textContent = content;
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'msg-actions';
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'msg-action-btn';
+    copyBtn.title = 'کپی';
+    copyBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    copyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const text = type === 'bot' ? msg.innerText : content;
+      navigator.clipboard.writeText(text).then(() => {
+        copyBtn.classList.add('copied');
+        setTimeout(() => copyBtn.classList.remove('copied'), 1500);
+      });
+    });
+    actions.appendChild(copyBtn);
+
+    msg.appendChild(actions);
+
+    msg.addEventListener('click', () => {
+      document.querySelectorAll('.msg.show-actions').forEach(m => {
+        if (m !== msg) m.classList.remove('show-actions');
+      });
+      msg.classList.toggle('show-actions');
+    });
+
+    chatStream.appendChild(msg);
+    chatStream.scrollTop = chatStream.scrollHeight;
+    return msg;
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.msg')) {
+      document.querySelectorAll('.msg.show-actions').forEach(m => m.classList.remove('show-actions'));
+    }
+  });
+
+  function showTyping() {
+    const t = document.createElement('div');
+    t.className = 'typing';
+    t.id = 'typingIndicator';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    chatStream.appendChild(t);
+    chatStream.scrollTop = chatStream.scrollHeight;
+  }
+
+  function hideTyping() {
+    const t = document.getElementById('typingIndicator');
+    if (t) t.remove();
+  }
+
+  function fillAndSend(text) {
+    messageInput.value = text;
+    sendMessage();
+  }
+
+  function clearChat() {
+    chatStream.innerHTML = '';
+    chatStream.appendChild(welcome);
+    welcome.style.display = 'block';
+    document.querySelectorAll('.g-card').forEach(c => c.classList.remove('active', 'flipped'));
+    document.getElementById('galleryStage').classList.remove('card-active');
+  }
+
+  async function sendMessage() {
+    const text = messageInput.value.trim();
+    if (!text) return;
+
+    const email = localStorage.getItem('user_email') || '';
+
+    addMessage(text, 'user');
+    messageInput.value = '';
+    messageInput.style.height = 'auto';
+
+    sendBtn.disabled = true;
+    sendIcon.style.display = 'none';
+    loader.style.display = 'block';
+    showTyping();
+
+    let finalMessage = text;
+    if (email) {
+      finalMessage += `\n\n[ایمیل کاربر: ${email}]`;
+    }
+
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: finalMessage,
+          email: email,
+          context: CONTEXT
+        })
+      });
+      const data = await response.json();
+      hideTyping();
+      const output = data.output || 'پاسخی دریافت نشد.';
+      addMessage(output, 'bot');
+    } catch (e) {
+      hideTyping();
+      addMessage('<p style="color:#f87171;">متأسفانه خطایی در ارتباط با سرور رخ داد.</p>', 'bot');
+    } finally {
+      sendBtn.disabled = false;
+      sendIcon.style.display = 'block';
+      loader.style.display = 'none';
+    }
+  }
+
+  // ============================================
+  // 3D GALLERY — Drag + 3-Click Interaction
+  // ============================================
+  const ring = document.getElementById('galleryRing');
+  const stage = document.getElementById('galleryStage');
+
+  if (ring && stage) {
+    let isDragging = false;
+    let currentRotation = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let autoRotate = true;
+    let activeCard = null;
+
+    const cards = ring.querySelectorAll('.g-card');
+
+    // Set images
+    cards.forEach((card) => {
+      const img = card.dataset.img;
+      if (img) card.style.backgroundImage = `url('${img}')`;
+    });
+
+    // Card click logic (3 states)
+    cards.forEach((card) => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isDragging) return;
+
+        const isActive = card.classList.contains('active');
+        const isFlipped = card.classList.contains('flipped');
+
+        // State 3: already active + flipped → send to agent
+        if (isActive && isFlipped) {
+          fillAndSend(`درباره ${card.dataset.title} در ${card.dataset.desc} توضیح بده و قیمت حدودی‌اش رو بگو`);
+          resetCardState();
+          return;
+        }
+
+        // State 2: already active → flip
+        if (isActive && !isFlipped) {
+          card.classList.add('flipped');
+          return;
+        }
+
+        // State 1: no active → bring forward
+        resetCardState();
+        card.classList.add('active');
+        stage.classList.add('card-active');
+        ring.classList.add('paused');
+        activeCard = card;
+      });
+    });
+
+    function resetCardState() {
+      cards.forEach(c => c.classList.remove('active', 'flipped'));
+      stage.classList.remove('card-active');
+      ring.classList.remove('paused');
+      activeCard = null;
+    }
+
+    // Click outside resets
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.g-card') && activeCard) {
+        resetCardState();
+      }
+    });
+
+    // Drag to Rotate
+    const onDown = (x) => {
+      if (activeCard) return;
+      isDragging = true;
+      autoRotate = false;
+      lastX = x;
+      velocity = 0;
+      ring.classList.add('paused');
+      ring.style.animation = 'none';
+    };
+
+    const onMove = (x) => {
+      if (!isDragging) return;
+      const dx = x - lastX;
+      velocity = dx * 0.4;
+      currentRotation += dx * 0.4;
+      ring.style.transform = `rotateY(${currentRotation}deg)`;
+      lastX = x;
+    };
+
+    const onUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      const inertia = () => {
+        if (Math.abs(velocity) < 0.1) {
+          if (!activeCard) {
+            autoRotate = true;
+            ring.classList.remove('paused');
+            ring.style.transform = '';
+            ring.style.animation = '';
+          }
+          return;
+        }
+        currentRotation += velocity;
+        velocity *= 0.95;
+        ring.style.transform = `rotateY(${currentRotation}deg)`;
+        requestAnimationFrame(inertia);
+      };
+      inertia();
+    };
+
+    stage.addEventListener('mousedown', (e) => onDown(e.clientX));
+    window.addEventListener('mousemove', (e) => onMove(e.clientX));
+    window.addEventListener('mouseup', onUp);
+
+    stage.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX), { passive: true });
+    stage.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX), { passive: true });
+    stage.addEventListener('touchend', onUp);
+  }
+</script>
+
+</body>
+      </html>
