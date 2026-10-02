@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#05050a">
+<title>تحلیل املاک — AI Real Estate</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link rel="stylesheet" href="chat-style.css">
+</head>
+<body style="--accent: #3b82f6; --accent-2: #00e5ff; --accent-rgb: 59, 130, 246;">
+
+<video class="bg-video" autoplay muted loop playsinline preload="auto" webkit-playsinline>
+  <source src="assets/property-bg.mp4" type="video/mp4">
+</video>
+
+<div class="bg-overlay"></div>
+<div class="bg-vignette"></div>
+<div class="bg-scan"></div>
+
+<header class="topbar">
+  <div class="tb-left">
+    <div class="tb-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div class="tb-text">
+      <span class="tb-title">تحلیل املاک</span>
+      <span class="tb-sub">PROPERTY ANALYSIS</span>
+    </div>
+  </div>
+  <div class="tb-actions">
+    <button class="tb-btn" onclick="clearChat()" title="گفتگوی جدید">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="tb-btn" title="بازگشت">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+  </div>
+</header>
+
+<main class="chat-shell">
+  <div class="chat-stream" id="chatStream">
+    <div class="welcome" id="welcome">
+      <div class="welcome-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h2>تحلیل <span class="accent-grad">املاک</span> هوشمند</h2>
+      <p>ارزیابی دقیق قیمت، بررسی سند، کاربری، مشاعات و تحلیل بازار منطقه‌ای.</p>
+      <div class="suggestions">
+        <div class="suggestion" onclick="fillAndSend('تحلیل کامل یک آپارتمان ۱۰۰ متری در تهران با قیمت ۸ میلیارد تومان')">
+          <div class="suggestion-title">تحلیل ملک</div>
+          ارزیابی قیمت و شرایط خرید
+        </div>
+        <div class="suggestion" onclick="fillAndSend('تفاوت سند تک‌برگ و منگوله‌دار چیست؟')">
+          <div class="suggestion-title">بررسی سند</div>
+          تک‌برگ، منگوله‌دار، شش‌دانگ
+        </div>
+        <div class="suggestion" onclick="fillAndSend('چه نکاتی رو برای بازدید یک آپارتمان باید بررسی کنم؟')">
+          <div class="suggestion-title">چک‌لیست بازدید</div>
+          نکات مهم قبل از خرید
+        </div>
+        <div class="suggestion" onclick="fillAndSend('کاربری ملک‌های مسکونی، تجاری و اداری چه تفاوت‌هایی دارند؟')">
+          <div class="suggestion-title">کاربری ملک</div>
+          مسکونی، تجاری، اداری
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="composer">
+    <div class="input-row">
+      <textarea id="messageInput" placeholder="سوال خود را بنویسید..." rows="1"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24" id="sendIcon"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <div class="loader" id="loader"></div>
+      </button>
+    </div>
+  </div>
+</main>
+
+<script>
+  const WEBHOOK_URL = 'https://mragent.app.n8n.cloud/webhook/chat';
+  const CONTEXT = 'real_estate';
+
+  const chatStream = document.getElementById('chatStream');
+  const welcome = document.getElementById('welcome');
+  const messageInput = document.getElementById('messageInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const sendIcon = document.getElementById('sendIcon');
+  const loader = document.getElementById('loader');
+
+  function cleanOutput(raw) {
+    if (!raw) return '';
+    let out = raw.trim();
+    out = out.replace(/```html\s*/gi, '').replace(/```\s*/g, '');
+    return out;
+  }
+
+  messageInput.addEventListener('input', () => {
+    messageInput.style.height = 'auto';
+    messageInput.style.height = Math.min(messageInput.scrollHeight, 160) + 'px';
+  });
+
+  messageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  function addMessage(content, type) {
+    if (welcome && welcome.style.display !== 'none') welcome.style.display = 'none';
+    const msg = document.createElement('div');
+    msg.className = 'msg ' + type;
+
+    if (type === 'bot') {
+      msg.innerHTML = cleanOutput(content);
+    } else {
+      msg.textContent = content;
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'msg-actions';
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'msg-action-btn';
+    copyBtn.title = 'کپی';
+    copyBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    copyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const text = type === 'bot' ? msg.innerText : content;
+      navigator.clipboard.writeText(text).then(() => {
+        copyBtn.classList.add('copied');
+        setTimeout(() => copyBtn.classList.remove('copied'), 1500);
+      });
+    });
+    actions.appendChild(copyBtn);
+
+    msg.appendChild(actions);
+
+    msg.addEventListener('click', () => {
+      document.querySelectorAll('.msg.show-actions').forEach(m => {
+        if (m !== msg) m.classList.remove('show-actions');
+      });
+      msg.classList.toggle('show-actions');
+    });
+
+    chatStream.appendChild(msg);
+    chatStream.scrollTop = chatStream.scrollHeight;
+    return msg;
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.msg')) {
+      document.querySelectorAll('.msg.show-actions').forEach(m => m.classList.remove('show-actions'));
+    }
+  });
+
+  function showTyping() {
+    const t = document.createElement('div');
+    t.className = 'typing';
+    t.id = 'typingIndicator';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    chatStream.appendChild(t);
+    chatStream.scrollTop = chatStream.scrollHeight;
+  }
+
+  function hideTyping() {
+    const t = document.getElementById('typingIndicator');
+    if (t) t.remove();
+  }
+
+  function fillAndSend(text) {
+    messageInput.value = text;
+    sendMessage();
+  }
+
+  function clearChat() {
+    chatStream.innerHTML = '';
+    chatStream.appendChild(welcome);
+    welcome.style.display = 'block';
+  }
+
+  async function sendMessage() {
+    const text = messageInput.value.trim();
+    if (!text) return;
+
+    const email = localStorage.getItem('user_email') || '';
+
+    addMessage(text, 'user');
+    messageInput.value = '';
+    messageInput.style.height = 'auto';
+
+    sendBtn.disabled = true;
+    sendIcon.style.display = 'none';
+    loader.style.display = 'block';
+    showTyping();
+
+    let finalMessage = text;
+    if (email) {
+      finalMessage += `\n\n[ایمیل کاربر: ${email}]`;
+    }
+
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: finalMessage,
+          email: email,
+          context: CONTEXT
+        })
+      });
+      const data = await response.json();
+      hideTyping();
+      const output = data.output || 'پاسخی دریافت نشد.';
+      addMessage(output, 'bot');
+    } catch (e) {
+      hideTyping();
+      addMessage('<p style="color:#f87171;">متأسفانه خطایی در ارتباط با سرور رخ داد.</p>', 'bot');
+    } finally {
+      sendBtn.disabled = false;
+      sendIcon.style.display = 'block';
+      loader.style.display = 'none';
+    }
+  }
+</script>
+
+</body>
+      </html>
