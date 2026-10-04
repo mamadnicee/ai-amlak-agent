@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#05050a">
+<title>AI Real Estate — آینده معاملات</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Three.js Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- Dynamic Background Images (SLIDE EFFECT) -->
+<div class="bg-images">
+  <img class="bg-img active" id="bg1" src="assets/bg-desktop1.jpg" alt="">
+  <img class="bg-img" id="bg2" src="assets/bg-desktop2.jpg" alt="">
+  <img class="bg-img" id="bg3" src="assets/bg-desktop3.jpg" alt="">
+  <img class="bg-img" id="bg4" src="assets/bg-desktop4.jpg" alt="">
+</div>
+
+<!-- Background Effects -->
+<div class="bg-overlay"></div>
+<div class="bg-vignette"></div>
+<div class="bg-scan"></div>
+
+<!-- 3D Car Background Canvas -->
+<canvas id="bg3d" class="bg-3d"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div class="nav-text">
+      <span class="nav-title">AI Real Estate</span>
+      <span class="nav-sub">INTELLIGENT SYSTEM</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#features">قابلیت‌ها</a>
+    <a href="#about">درباره سیستم</a>
+  </div>
+</nav>
+
+<main class="scroll-container" id="scrollContainer">
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-center">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        نسخه ۲.۵ · نسل جدید هوش مصنوعی
+      </div>
+      <h1 class="mega-title">
+        <span class="line-1" data-text="AI REAL">AI REAL</span>
+        <span class="line-2 accent" data-text="ESTATE">ESTATE</span>
+      </h1>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-mouse"></div>
+      <span>اسکرول کنید</span>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features">
+    <div class="section-head">
+      <div class="section-tag">CORE CAPABILITIES</div>
+      <h2 class="section-title">چرا <span class="accent-text">AI Real Estate</span>؟</h2>
+      <p class="section-desc">ترکیبی از دانش حقوقی، تحلیل فنی و هوش مصنوعی پیشرفته</p>
+    </div>
+
+    <div class="cards-grid">
+      <a href="chat-property.html" class="glass-card animate-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>تحلیل املاک</h3>
+        <p>ارزیابی دقیق قیمت، بررسی سند، کاربری، مشاعات و تحلیل بازار منطقه‌ای.</p>
+      </a>
+
+      <a href="chat-car.html" class="glass-card animate-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>بررسی خودرو</h3>
+        <p>تحلیل فنی موتور، شاسی، رنگ، تصادف، کارکرد و قیمت‌گذاری لحظه‌ای بازار.</p>
+      </a>
+
+      <a href="chat-contract.html" class="glass-card animate-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>بررسی قرارداد</h3>
+        <p>تحلیل بند به بند قولنامه، شناسایی بندهای خطرناک و ارائه چک‌لیست قبل از امضا.</p>
+      </a>
+
+      <a href="chat-finance.html" class="glass-card animate-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <h3>محاسبات مالی</h3>
+        <p>محاسبه دقیق اقساط، سود، جریمه دیرکرد و استهلاک خودرو با نمودار اختصاصی.</p>
+      </a>
+
+      <a href="chat-search.html" class="glass-card animate-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="22" y2="22"/></svg></div>
+        <h3>جستجوی زنده</h3>
+        <p>اتصال به منابع به‌روز بازار برای قیمت لحظه‌ای و اطلاعات دقیق.</p>
+      </a>
+
+      <a href="#about" class="glass-card card-cta animate-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+        <h3>درباره سیستم</h3>
+        <p>اطلاعات کامل درباره معماری، تکنولوژی و قابلیت‌های این پلتفرم هوشمند.</p>
+        <div class="card-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="section-head">
+      <div class="section-tag">THE VISION</div>
+      <h2 class="section-title">معاملات، <span class="accent-text-2">هوشمندتر</span></h2>
+      <p class="section-desc">یک رابط ساده برای دسترسی به مجموعه‌ای از ابزارهای هوشمند تخصصی.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento-card animate-card">
+        <div class="bento-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h4>تحلیل مستند</h4>
+        <p>بررسی خودکار بندهای حقوقی و شناسایی ریسک‌های پنهان در اسناد با دقت ۹۹٪ توسط مدل‌های زبانی پیشرفته.</p>
+      </div>
+      <div class="bento-card animate-card">
+        <div class="bento-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h4>پاسخ‌دهی ۲۴/۷</h4>
+        <p>دسترسی بدون وقفه به مشاور هوشمند در هر ساعت از شبانه‌روز، بدون نیاز به انتظار برای اپراتور انسانی.</p>
+      </div>
+      <div class="bento-card animate-card">
+        <div class="bento-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h4>امنیت اطلاعات</h4>
+        <p>رمزنگاری سرتاسری داده‌ها و عدم ذخیره‌سازی اطلاعات حساس کاربران روی سرورهای شخص ثالث.</p>
+      </div>
+      <div class="bento-card animate-card">
+        <div class="bento-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+        <h4>محاسبات دقیق</h4>
+        <p>موتور محاسباتی اختصاصی برای شبیه‌سازی سناریوهای مالی، محاسبه سود مرکب و تحلیل ریسک سرمایه‌گذاری.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-space"></div>
+</main>
+
+<!-- FLOATING DOCK -->
+<div class="floating-dock" id="floatingDock">
+  <button class="dock-item" data-tool="calculator" title="ماشین حساب">
+    <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="16" y1="18" x2="16" y2="18.01"/></svg>
+    <span class="dock-tooltip">ماشین حساب</span>
+  </button>
+  
+  <button class="dock-item" data-tool="prices" title="قیمت لحظه‌ای">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+    <span class="dock-tooltip">قیمت لحظه‌ای</span>
+  </button>
+  
+  <button class="dock-item" data-tool="notes" title="یادداشت">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    <span class="dock-tooltip">یادداشت</span>
+  </button>
+  
+  <button class="dock-item" data-tool="mortgage" title="وام مسکن">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="dock-tooltip">وام مسکن</span>
+  </button>
+</div>
+
+<!-- TOOL MODALS -->
+<div class="tool-modal" id="toolModal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    
+    <!-- Calculator Tool -->
+    <div class="tool-panel" id="calculatorPanel">
+      <h3>ماشین حساب سریع</h3>
+      <div class="calc-display" id="calcDisplay">0</div>
+      <div class="calc-buttons">
+        <button class="calc-btn" data-val="7">7</button>
+        <button class="calc-btn" data-val="8">8</button>
+        <button class="calc-btn" data-val="9">9</button>
+        <button class="calc-btn op" data-val="/">÷</button>
+        <button class="calc-btn" data-val="4">4</button>
+        <button class="calc-btn" data-val="5">5</button>
+        <button class="calc-btn" data-val="6">6</button>
+        <button class="calc-btn op" data-val="*">×</button>
+        <button class="calc-btn" data-val="1">1</button>
+        <button class="calc-btn" data-val="2">2</button>
+        <button class="calc-btn" data-val="3">3</button>
+        <button class="calc-btn op" data-val="-">−</button>
+        <button class="calc-btn" data-val="0">0</button>
+        <button class="calc-btn" data-val=".">.</button>
+        <button class="calc-btn clear" data-val="C">C</button>
+        <button class="calc-btn op" data-val="+">+</button>
+        <button class="calc-btn equals" data-val="=">=</button>
+      </div>
+    </div>
+    
+    <!-- Prices Tool -->
+    <div class="tool-panel" id="pricesPanel">
+      <h3>قیمت لحظه‌ای بازار (زنده)</h3>
+      <div class="price-grid compact">
+        <div class="price-item">
+          <div class="price-label">دلار (USD)</div>
+          <div class="price-value" id="usdPrice">...</div>
+          <div class="price-change" id="usdChange">--</div>
+        </div>
+        <div class="price-item">
+          <div class="price-label">یورو (EUR)</div>
+          <div class="price-value" id="eurPrice">...</div>
+          <div class="price-change" id="eurChange">--</div>
+        </div>
+        <div class="price-item">
+          <div class="price-label">طلا (گرم)</div>
+          <div class="price-value" id="goldPrice">...</div>
+          <div class="price-change" id="goldChange">--</div>
+        </div>
+        <div class="price-item">
+          <div class="price-label">بیت‌کوین (BTC)</div>
+          <div class="price-value" id="btcPrice">...</div>
+          <div class="price-change" id="btcChange">--</div>
+        </div>
+        <div class="price-item">
+          <div class="price-label">اتریوم (ETH)</div>
+          <div class="price-value" id="ethPrice">...</div>
+          <div class="price-change" id="ethChange">--</div>
+        </div>
+        <div class="price-item">
+          <div class="price-label">تتر (USDT)</div>
+          <div class="price-value" id="usdtPrice">...</div>
+          <div class="price-change" id="usdtChange">--</div>
+        </div>
+      </div>
+      <div class="price-chart">
+        <canvas id="priceChart"></canvas>
+      </div>
+    </div>
+    
+    <!-- Notes Tool -->
+    <div class="tool-panel" id="notesPanel">
+      <h3>یادداشت سریع</h3>
+      <textarea class="notes-input" id="notesInput" placeholder="یادداشت خود را بنویسید..."></textarea>
+      <div class="notes-actions">
+        <button class="notes-save" id="saveNote">ذخیره</button>
+        <button class="notes-clear" id="clearNote">پاک کردن</button>
+      </div>
+      <div class="notes-saved" id="savedNotes"></div>
+    </div>
+    
+    <!-- Mortgage Tool -->
+    <div class="tool-panel" id="mortgagePanel">
+      <h3>محاسبه وام مسکن</h3>
+      <div class="mortgage-inputs">
+        <div class="input-group">
+          <label>مبلغ وام (تومان)</label>
+          <input type="range" id="loanAmount" min="100000000" max="5000000000" step="50000000" value="1000000000">
+          <div class="range-value" id="loanAmountValue">۱,۰۰۰,۰۰,۰۰۰</div>
+        </div>
+        <div class="input-group">
+          <label>نرخ سود (درصد)</label>
+          <input type="range" id="interestRate" min="5" max="25" step="0.5" value="18">
+          <div class="range-value" id="interestRateValue">۱۸٪</div>
+        </div>
+        <div class="input-group">
+          <label>مدت بازپرداخت (سال)</label>
+          <input type="range" id="loanTerm" min="1" max="30" step="1" value="20">
+          <div class="range-value" id="loanTermValue">۲۰ سال</div>
+        </div>
+      </div>
+      <div class="mortgage-results">
+        <div class="result-item">
+          <div class="result-label">قسط ماهانه</div>
+          <div class="result-value" id="monthlyPayment">۱,۲۳۰,۰۰</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">کل پرداختی</div>
+          <div class="result-value" id="totalPayment">۳,۶۵۵,۰۰,۰۰۰</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">کل سود</div>
+          <div class="result-value" id="totalInterest">۲,۶۵۵,۲۰,۰۰۰</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ==========================================
+  // 1. UI & SCROLL LOGIC
+  // ==========================================
+  const navbar = document.getElementById('navbar');
+  const dock = document.getElementById('floatingDock');
+  const scrollContainer = document.getElementById('scrollContainer');
+  let lastScroll = 0;
+
+  scrollContainer.addEventListener('scroll', () => {
+    const currentScroll = scrollContainer.scrollTop;
+    if (currentScroll > lastScroll && currentScroll > 150) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+    lastScroll = currentScroll;
+
+    if (currentScroll > 400) {
+      dock.classList.add('dock-visible');
+    } else {
+      dock.classList.remove('dock-visible');
+    }
+  });
+
+  // ==========================================
+  // 2. MODAL LOGIC
+  // ==========================================
+  const dockItems = document.querySelectorAll('.dock-item');
+  const toolModal = document.getElementById('toolModal');
+  const modalOverlay = document.querySelector('.modal-overlay');
+  const modalClose = document.querySelector('.modal-close');
+  const toolPanels = document.querySelectorAll('.tool-panel');
+
+  dockItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const tool = item.dataset.tool;
+      toolPanels.forEach(panel => panel.classList.remove('active'));
+      document.getElementById(tool + 'Panel').classList.add('active');
+      toolModal.classList.add('active');
+      
+      if (tool === 'prices') {
+        fetchRealPrices();
+      }
+    });
+  });
+
+  modalOverlay.addEventListener('click', closeModal);
+  modalClose.addEventListener('click', closeModal);
+
+  function closeModal() {
+    toolModal.classList.remove('active');
+  }
+
+  // ==========================================
+  // 3. CALCULATOR LOGIC
+  // ==========================================
+  const calcDisplay = document.getElementById('calcDisplay');
+  const calcButtons = document.querySelectorAll('.calc-btn');
+  let calcExpression = '';
+
+  calcButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.val;
+      if (val === 'C') {
+        calcExpression = '';
+        calcDisplay.textContent = '0';
+      } else if (val === '=') {
+        try {
+          calcExpression = eval(calcExpression).toString();
+          calcDisplay.textContent = calcExpression;
+        } catch {
+          calcDisplay.textContent = 'Error';
+          calcExpression = '';
+        }
+      } else {
+        calcExpression += val;
+        calcDisplay.textContent = calcExpression;
+      }
+    });
+  });
+
+  // ==========================================
+  // 4. NOTES LOGIC
+  // ==========================================
+  const notesInput = document.getElementById('notesInput');
+  const saveNote = document.getElementById('saveNote');
+  const clearNote = document.getElementById('clearNote');
+  const savedNotes = document.getElementById('savedNotes');
+  let savedNotesData = JSON.parse(localStorage.getItem('quickNotes') || '[]');
+  renderNotes();
+
+  saveNote.addEventListener('click', () => {
+    const note = notesInput.value.trim();
+    if (note) {
+      savedNotesData.push({ text: note, date: new Date().toLocaleDateString('fa-IR') });
+      localStorage.setItem('quickNotes', JSON.stringify(savedNotesData));
+      notesInput.value = '';
+      renderNotes();
+    }
+  });
+
+  clearNote.addEventListener('click', () => { notesInput.value = ''; });
+
+  function renderNotes() {
+    savedNotes.innerHTML = savedNotesData.map((note, i) => `
+      <div class="note-item">
+        <span>${note.text}</span>
+        <small>${note.date}</small>
+        <button onclick="deleteNote(${i})">×</button>
+      </div>
+    `).join('');
+  }
+  window.deleteNote = (index) => {
+    savedNotesData.splice(index, 1);
+    localStorage.setItem('quickNotes', JSON.stringify(savedNotesData));
+    renderNotes();
+  };
+
+  // ==========================================
+  // 5. MORTGAGE CALCULATOR LOGIC
+  // ==========================================
+  const loanAmount = document.getElementById('loanAmount');
+  const interestRate = document.getElementById('interestRate');
+  const loanTerm = document.getElementById('loanTerm');
+  
+  function formatNumber(num) {
+    return Math.round(num).toLocaleString('fa-IR');
+  }
+
+  function calculateMortgage() {
+    const principal = parseFloat(loanAmount.value);
+    const rate = parseFloat(interestRate.value) / 100 / 12;
+    const years = parseFloat(loanTerm.value);
+    const months = years * 12;
+
+    const monthly = principal * (rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+    const total = monthly * months;
+    const interest = total - principal;
+
+    document.getElementById('loanAmountValue').textContent = formatNumber(principal);
+    document.getElementById('interestRateValue').textContent = interestRate.value + '٪';
+    document.getElementById('loanTermValue').textContent = years + ' سال';
+    document.getElementById('monthlyPayment').textContent = formatNumber(monthly);
+    document.getElementById('totalPayment').textContent = formatNumber(total);
+    document.getElementById('totalInterest').textContent = formatNumber(interest);
+  }
+
+  [loanAmount, interestRate, loanTerm].forEach(el => el.addEventListener('input', calculateMortgage));
+  calculateMortgage();
+
+  // ==========================================
+  // 6. REAL-TIME PRICES & CHART
+  // ==========================================
+  const API_KEY = '5baf278b52bc0e2796e54801';
+  let priceHistory = Array(30).fill(3000000000);
+
+  async function fetchRealPrices() {
+    try {
+      const fiatRes = await fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`);
+      const fiatData = await fiatRes.json();
+      
+      const usdToIrr = fiatData.conversion_rates.IRR;
+      const eurToIrr = usdToIrr / fiatData.conversion_rates.EUR;
+
+      const cryptoRes = await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,USDT&tsyms=USD');
+      const cryptoData = await cryptoRes.json();
+      
+      const btcUSD = cryptoData.RAW.BTC.USD.PRICE;
+      const ethUSD = cryptoData.RAW.ETH.USD.PRICE;
+      const usdtUSD = cryptoData.RAW.USDT.USD.PRICE;
+
+      const btcIRR = btcUSD * usdToIrr;
+      const ethIRR = ethUSD * usdToIrr;
+      const usdtIRR = usdtUSD * usdToIrr;
+
+      const goldOzUSD = 2650;
+      const goldGramUSD = goldOzUSD / 31.1035;
+      const goldGramIRR = goldGramUSD * usdToIrr;
+
+      document.getElementById('usdPrice').textContent = formatNumber(usdToIrr);
+      document.getElementById('eurPrice').textContent = formatNumber(eurToIrr);
+      document.getElementById('goldPrice').textContent = formatNumber(goldGramIRR);
+      document.getElementById('btcPrice').textContent = formatNumber(btcIRR);
+      document.getElementById('ethPrice').textContent = formatNumber(ethIRR);
+      document.getElementById('usdtPrice').textContent = formatNumber(usdtIRR);
+
+      const changes = [
+        { id: 'usdChange', val: 0.15 },
+        { id: 'eurChange', val: -0.08 },
+        { id: 'goldChange', val: 1.2 },
+        { id: 'btcChange', val: 2.5 },
+        { id: 'ethChange', val: -1.8 },
+        { id: 'usdtChange', val: 0.02 }
+      ];
+
+      changes.forEach(c => {
+        const el = document.getElementById(c.id);
+        const sign = c.val >= 0 ? '+' : '';
+        el.textContent = `${sign}${c.val.toFixed(2)}%`;
+        el.className = `price-change ${c.val >= 0 ? 'up' : 'down'}`;
+      });
+
+      priceHistory.push(btcIRR);
+      if (priceHistory.length > 30) priceHistory.shift();
+      setTimeout(drawRealTimeChart, 100);
+
+    } catch (error) {
+      console.error("API Error:", error);
+      document.getElementById('usdPrice').textContent = 'خطا';
+    }
+  }
+
+  function drawRealTimeChart() {
+    const canvas = document.getElementById('priceChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const rect = canvas.parentElement.getBoundingClientRect();
+    
+    canvas.width = rect.width - 32;
+    canvas.height = 180;
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const padding = 15;
+
+    ctx.clearRect(0, 0, width, height);
+
+    const data = priceHistory;
+    if (data.length < 2) return;
+
+    const max = Math.max(...data) * 1.01;
+    const min = Math.min(...data) * 0.99;
+    const range = max - min;
+
+    const getX = (i) => padding + (i / (data.length - 1)) * (width - padding * 2);
+    const getY = (val) => height - padding - ((val - min) / range) * (height - padding * 2);
+
+    ctx.beginPath();
+    ctx.moveTo(getX(0), height);
+    
+    for (let i = 0; i < data.length; i++) {
+      const x = getX(i);
+      const y = getY(data[i]);
+      if (i === 0) {
+        ctx.lineTo(x, y);
+      } else {
+        const prevX = getX(i - 1);
+        const prevY = getY(data[i - 1]);
+        const cpX = (prevX + x) / 2;
+        ctx.quadraticCurveTo(prevX, prevY, cpX, (prevY + y) / 2);
+        ctx.quadraticCurveTo(cpX, (prevY + y) / 2, x, y);
+      }
+    }
+    
+    ctx.lineTo(getX(data.length - 1), height);
+    ctx.closePath();
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, 'rgba(0, 229, 255, 0.3)');
+    gradient.addColorStop(1, 'rgba(0, 229, 255, 0.0)');
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    ctx.beginPath();
+    for (let i = 0; i < data.length; i++) {
+      const x = getX(i);
+      const y = getY(data[i]);
+      if (i === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        const prevX = getX(i - 1);
+        const prevY = getY(data[i - 1]);
+        const cpX = (prevX + x) / 2;
+        ctx.quadraticCurveTo(prevX, prevY, cpX, (prevY + y) / 2);
+        ctx.quadraticCurveTo(cpX, (prevY + y) / 2, x, y);
+      }
+    }
+    
+    ctx.strokeStyle = '#00e5ff';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.shadowColor = '#00e5ff';
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    const lastX = getX(data.length - 1);
+    const lastY = getY(data[data.length - 1]);
+    
+    ctx.beginPath();
+    ctx.arc(lastX, lastY, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+  }
+
+  fetchRealPrices();
+  setInterval(fetchRealPrices, 10000);
+
+  // ==========================================
+  // 7. EMAIL MEMORY & MOUSE TRACKING
+  // ==========================================
+  const savedEmail = localStorage.getItem('user_email');
+  const emailInputs = document.querySelectorAll('input[type="email"]');
+  if (savedEmail && emailInputs.length) {
+    emailInputs.forEach(inp => inp.value = savedEmail);
+  }
+  emailInputs.forEach(inp => {
+    inp.addEventListener('input', () => {
+      const val = inp.value.trim();
+      if (val.includes('@') && val.includes('.')) localStorage.setItem('user_email', val);
+    });
+  });
+
+  document.querySelectorAll('.bento-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // ==========================================
+  // 8. CARD ANIMATIONS (IntersectionObserver)
+  // ==========================================
+  const animateCards = document.querySelectorAll('.animate-card');
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, index * 100);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  animateCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(40px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    cardObserver.observe(card);
+  });
+</script>
+
+<!-- ========================================== -->
+<!-- 9. 3D CAR - SCROLLTRIGGER CAMERA & ROTATION + SLIDE BACKGROUNDS -->
+<!-- ========================================== -->
+<script>
+(function() {
+  const canvas = document.getElementById('bg3d');
+  if (!canvas) return;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  
+  const renderer = new THREE.WebGLRenderer({ 
+    canvas: canvas, 
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance"
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.2;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+
+  // LIGHTING
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+
+  const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
+  hemisphereLight.position.set(0, 20, 0);
+  scene.add(hemisphereLight);
+
+  const mainLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  mainLight.position.set(10, 15, 10);
+  mainLight.castShadow = true;
+  mainLight.shadow.mapSize.width = 2048;
+  mainLight.shadow.mapSize.height = 2048;
+  scene.add(mainLight);
+
+  const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  fillLight.position.set(-10, 5, -10);
+  scene.add(fillLight);
+
+  const accentLight = new THREE.PointLight(0x00e5ff, 0.3, 30);
+  accentLight.position.set(5, 5, 5);
+  scene.add(accentLight);
+
+  // GLOBAL VARIABLES
+  let carModel;
+  let isMobile = window.innerWidth < 768;
+
+  // Dynamic Background Images
+  const bgImages = document.querySelectorAll('.bg-img');
+  
+  function updateBackgroundImages() {
+    const prefix = isMobile ? 'bg-mobile' : 'bg-desktop';
+    bgImages.forEach((img, index) => {
+      img.src = `assets/${prefix}${index + 1}.jpg`;
+    });
+  }
+  updateBackgroundImages();
+
+  // Load GLTF Model
+  const loader = new THREE.GLTFLoader();
+  
+  loader.load('assets/car/scene.gltf', (gltf) => {
+    carModel = gltf.scene;
+    setupCarModel(carModel);
+    setupScrollAnimations();
+    console.log('✅ GLTF loaded successfully!');
+  }, 
+  (xhr) => console.log((xhr.loaded / xhr.total * 100) + '% loaded'),
+  (error) => {
+    console.error(' Error loading GLTF:', error);
+  });
+
+  function setupCarModel(model) {
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const shortestSide = Math.min(window.innerWidth, window.innerHeight);
+    let scale;
+    
+    if (shortestSide < 500) {
+      scale = 8.0 / maxDim;
+    } else if (shortestSide < 800) {
+      scale = 12.0 / maxDim;
+    } else {
+      scale = 18.0 / maxDim;
+    }
+    
+    model.scale.set(scale, scale, scale);
+    model.position.x = -center.x * scale;
+    model.position.y = -center.y * scale - 1.5;
+    model.position.z = -center.z * scale;
+    
+    model.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+    
+    scene.add(model);
+    camera.lookAt(model.position);
+    camera.position.z = 10;
+  }
+
+  // ============================================
+  // SCROLL ANIMATIONS WITH GSAP SCROLLTRIGGER
+  // ============================================
+  function setupScrollAnimations() {
+    if (!carModel) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Create a master timeline that syncs with scroll
+    const masterTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#scrollContainer',
+        scroller: '#scrollContainer',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5, // Smooth but fast
+      }
+    });
+
+    // 1. CAR ROTATION (Limited to 360°)
+    masterTl.to(carModel.rotation, {
+      y: Math.PI * 2, // One full rotation
+      x: 0.3, // Slight tilt
+      duration: 1,
+      ease: 'power1.inOut'
+    }, 0);
+
+    // 2. CAMERA MOVEMENT (Front → Right → Side → Back → Top)
+    masterTl.to(camera.position, {
+      x: 8, // Move right
+      duration: 0.25,
+      ease: 'power1.inOut'
+    }, 0);
+
+    masterTl.to(camera.position, {
+      x: 0, // Back to center
+      z: 12, // Zoom out slightly
+      duration: 0.25,
+      ease: 'power1.inOut'
+    }, 0.25);
+
+    masterTl.to(camera.position, {
+      x: -8, // Move left
+      z: 14, // Zoom out more
+      duration: 0.25,
+      ease: 'power1.inOut'
+    }, 0.5);
+
+    masterTl.to(camera.position, {
+      x: 0, // Back to center
+      y: 5, // Move up (top view)
+      z: 16, // Zoom out more
+      duration: 0.25,
+      ease: 'power1.inOut'
+    }, 0.75);
+
+    // 3. BACKGROUND SLIDE EFFECTS
+    const bgTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#scrollContainer',
+        scroller: '#scrollContainer',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.3, // Faster than car
+      }
+    });
+
+    // BG1 → BG2 (at 25%)
+    bgTl.to('#bg1', {
+      xPercent: -100,
+      duration: 0.1,
+      ease: 'power2.inOut'
+    }, 0.2);
+
+    bgTl.fromTo('#bg2', 
+      { xPercent: 100 },
+      { xPercent: 0, duration: 0.1, ease: 'power2.inOut' },
+      0.2
+    );
+
+    // BG2 → BG3 (at 50%)
+    bgTl.to('#bg2', {
+      xPercent: -100,
+      duration: 0.1,
+      ease: 'power2.inOut'
+    }, 0.45);
+
+    bgTl.fromTo('#bg3', 
+      { xPercent: 100 },
+      { xPercent: 0, duration: 0.1, ease: 'power2.inOut' },
+      0.45
+    );
+
+    // BG3 → BG4 (at 75%)
+    bgTl.to('#bg3', {
+      xPercent: -100,
+      duration: 0.1,
+      ease: 'power2.inOut'
+    }, 0.7);
+
+    bgTl.fromTo('#bg4', 
+      { xPercent: 100 },
+      { xPercent: 0, duration: 0.1, ease: 'power2.inOut' },
+      0.7
+    );
+  }
+
+  // Mouse interaction (subtle)
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+  });
+
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    if (carModel) {
+      // Subtle mouse influence
+      carModel.rotation.x += (mouseY * 0.05 - carModel.rotation.x) * 0.02;
+    }
+    
+    camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+    camera.position.y += (-mouseY * 0.3 - camera.position.y) * 0.05;
+    
+    if (carModel) {
+      camera.lookAt(carModel.position);
+    }
+    
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Responsive
+  function updateCamera() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+  
+  window.addEventListener('resize', () => {
+    updateCamera();
+    const newIsMobile = window.innerWidth < 768;
+    if (newIsMobile !== isMobile) {
+      isMobile = newIsMobile;
+      updateBackgroundImages();
+    }
+  });
+})();
+</script>
+
+</body>
+  </html>
