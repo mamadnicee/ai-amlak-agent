@@ -1,0 +1,231 @@
+/* ============================================
+   FONTS & ROOT VARIABLES
+   ============================================ */
+:root {
+  --cyan: #00e5ff;
+  --purple: #a78bfa;
+  --violet: #7c6cf0;
+  --pink: #ec4899;
+  --text: #f0f4fa;
+  --text-dim: #94a3b8;
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'Peyda', 'Vazirmatn', 'Syne', 'Barlow', 'Segoe UI', Tahoma, sans-serif;
+}
+
+.mega-title {
+  font-family: 'Syne', sans-serif;
+}
+
+/* ============================================
+   HERO SPLIT LAYOUT
+   ============================================ */
+.hero-section {
+  position: relative; 
+  min-height: 100vh;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  padding: 0 24px;
+  overflow: hidden;
+}
+
+.hero-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  height: 100vh;
+  position: relative;
+}
+
+.hero-panel {
+  width: 45%;
+  max-width: 550px;
+  padding: 50px 40px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  z-index: 10;
+  margin-right: auto; /* در RTL به سمت چپ می‌رود */
+}
+
+.hero-visual-placeholder {
+  width: 50%;
+  height: 100%;
+}
+
+/* ============================================
+   GLOW CARD EFFECT
+   ============================================ */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--glow-color, rgba(0, 229, 255, 0.6)),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+.glow-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   MINIMAL ICONS FOR CARDS
+   ============================================ */
+.minimal-icon {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 15px var(--cyan);
+  position: relative;
+}
+
+.minimal-icon::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.glow-card:hover .minimal-icon {
+  transform: scale(1.2);
+  background: #fff;
+  box-shadow: 0 0 25px var(--glow-color);
+}
+
+/* ============================================
+   LIMELIGHT DOCK EFFECT
+   ============================================ */
+.limelight-dock {
+  position: relative;
+  overflow: hidden;
+}
+
+.limelight-beam {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 140px;
+  background: radial-gradient(ellipse at top, rgba(0, 229, 255, 0.8), transparent 70%);
+  filter: blur(12px);
+  pointer-events: none;
+  opacity: 0;
+  transition: left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  z-index: 0;
+}
+
+.dock-item {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   PARTICLES FOR ABOUT BUTTON
+   ============================================ */
+.card-cta .particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.card-cta .particles::before,
+.card-cta .particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  box-shadow: 0 0 8px #fff, 0 0 16px var(--cyan);
+}
+
+.card-cta .particles::before {
+  left: 20%;
+  bottom: -10px;
+  animation: floatParticle 4s infinite ease-in-out;
+}
+
+.card-cta .particles::after {
+  right: 30%;
+  bottom: -10px;
+  animation: floatParticle 4s infinite ease-in-out 2s;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) scale(0); opacity: 0; }
+  20% { opacity: 1; transform: translateY(-20px) scale(1); }
+  80% { opacity: 0.8; transform: translateY(-80px) scale(0.8); }
+  100% { transform: translateY(-120px) scale(0); opacity: 0; }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN FOR HERO SPLIT
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero-split {
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    padding: 100px 0;
+  }
+  .hero-panel {
+    width: 100%;
+    max-width: 600px;
+    margin-right: 0;
+    text-align: center;
+    padding: 40px 24px;
+  }
+  .hero-visual-placeholder {
+    display: none;
+  }
+  .hero-stats {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 0 16px;
+  }
+  .hero-panel {
+    padding: 30px 20px;
+    border-radius: 24px;
+  }
+  .mega-title {
+    font-size: clamp(2.5rem, 14vw, 5rem);
+  }
+  .hero-subtext {
+    font-size: 0.95rem;
+  }
+}
