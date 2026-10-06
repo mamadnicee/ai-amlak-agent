@@ -1,0 +1,26 @@
+# Rendered by the nginx image's envsubst step at container start; the values come
+# from /run/base44/app.env. The rendered copy lives in the container only.
+#
+# These proxies exist so the API keys are never shipped to the browser: the
+# static page fetches same-origin /api/fiat and /api/crypto, and nginx adds the
+# credentials on the way out.
+
+# Fiat reference rates (USD/EUR/IRR) - index.html "live prices" panel.
+location = /api/fiat {
+    proxy_pass https://v6.exchangerate-api.com/v6/${EXCHANGE_API_KEY}/latest/USD;
+    proxy_set_header Host v6.exchangerate-api.com;
+    proxy_ssl_server_name on;
+    proxy_connect_timeout 5s;
+    proxy_read_timeout 10s;
+}
+
+# Crypto prices (BTC/ETH/USDT) - same panel. Needs CRYPTOCOMPARE_API_KEY;
+# without it the upstream answers 401 and the three crypto rows stay empty.
+location = /api/crypto {
+    proxy_pass https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,USDT&tsyms=USD;
+    proxy_set_header Host min-api.cryptocompare.com;
+    proxy_set_header Authorization "Apikey ${CRYPTOCOMPARE_API_KEY}";
+    proxy_ssl_server_name on;
+    proxy_connect_timeout 5s;
+    proxy_read_timeout 10s;
+}

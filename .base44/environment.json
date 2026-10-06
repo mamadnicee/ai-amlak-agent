@@ -2,5 +2,16 @@
   "previewPort": 3000,
   "healthPath": "/",
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
-  "secrets": []
+  "secrets": [
+    {
+      "name": "EXCHANGE_API_KEY",
+      "description": "ExchangeRate-API key used server-side by the /api/fiat proxy for the live USD/EUR/gold rates panel. Optional for boot.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "CRYPTOCOMPARE_API_KEY",
+      "description": "CoinDesk (CryptoCompare) API key used server-side by the /api/crypto proxy for the BTC/ETH/USDT rates. Optional for boot.",
+      "requiredAtBoot": false
+    }
+  ]
 }

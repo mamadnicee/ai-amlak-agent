@@ -366,23 +366,28 @@
   calculateMortgage();
 
   // 7. PRICES
-  const API_KEY = '5baf278b52bc0e2796e54801';
+  // Both calls go through same-origin proxies so the provider API keys stay
+  // server-side (see nginx-prices.conf.template).
   let priceHistory = Array(30).fill(3000000000);
-  async function fetchRealPrices() {
+  let usdToIrr = 0;
+  async function fetchFiatPrices() {
     try {
-      const fiatRes = await fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`);
+      const fiatRes = await fetch('/api/fiat');
       const fiatData = await fiatRes.json();
-      const usdToIrr = fiatData.conversion_rates.IRR;
-      const eurToIrr = usdToIrr / fiatData.conversion_rates.EUR;
-      const cryptoRes = await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,USDT&tsyms=USD');
+      usdToIrr = fiatData.conversion_rates.IRR;
+      document.getElementById('usdPrice').textContent = formatNumber(usdToIrr);
+      document.getElementById('eurPrice').textContent = formatNumber(usdToIrr / fiatData.conversion_rates.EUR);
+      document.getElementById('goldPrice').textContent = formatNumber((2650 / 31.1035) * usdToIrr);
+    } catch (e) { console.error(e); }
+  }
+  async function fetchCryptoPrices() {
+    if (!usdToIrr) return;
+    try {
+      const cryptoRes = await fetch('/api/crypto');
       const cryptoData = await cryptoRes.json();
       const btcIRR = cryptoData.RAW.BTC.USD.PRICE * usdToIrr;
       const ethIRR = cryptoData.RAW.ETH.USD.PRICE * usdToIrr;
       const usdtIRR = cryptoData.RAW.USDT.USD.PRICE * usdToIrr;
-      const goldGramIRR = (2650 / 31.1035) * usdToIrr;
-      document.getElementById('usdPrice').textContent = formatNumber(usdToIrr);
-      document.getElementById('eurPrice').textContent = formatNumber(eurToIrr);
-      document.getElementById('goldPrice').textContent = formatNumber(goldGramIRR);
       document.getElementById('btcPrice').textContent = formatNumber(btcIRR);
       document.getElementById('ethPrice').textContent = formatNumber(ethIRR);
       document.getElementById('usdtPrice').textContent = formatNumber(usdtIRR);
@@ -390,6 +395,10 @@
       if (priceHistory.length > 30) priceHistory.shift();
       setTimeout(drawRealTimeChart, 100);
     } catch (e) { console.error(e); }
+  }
+  async function fetchRealPrices() {
+    await fetchFiatPrices();
+    await fetchCryptoPrices();
   }
   function drawRealTimeChart() {
     const canvas = document.getElementById('priceChart');
