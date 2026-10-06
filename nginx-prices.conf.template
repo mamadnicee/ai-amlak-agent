@@ -1,19 +1,22 @@
 # Rendered by the nginx image's envsubst step at container start; the values come
 # from /run/base44/app.env. The rendered copy lives in the container only.
 #
-# These proxies exist so the API keys are never shipped to the browser: the
-# static page fetches same-origin /api/fiat and /api/crypto, and nginx adds the
-# credentials on the way out.
+# These proxies keep browser code away from third-party APIs: the static page
+# fetches same-origin /api/fiat and /api/crypto and nginx adds the credential
+# (crypto only) plus the shared cache on the way out.
 #
-# Both locations are cached (see `proxy_cache_path` in nginx.base44.conf). The
-# page polls every 10 s, which burns a free-tier quota within days, so upstream is
-# called at most once per TTL and the last good rates are served if the provider
-# errors. `X-Price-Cache` reports HIT/MISS/STALE for debugging.
+# Both locations are cached (see `proxy_cache_path` in nginx.base44.conf). The page
+# polls every 10 s, so upstream is called at most once per TTL and the last good
+# rates are served if the provider errors. `X-Price-Cache` reports HIT/MISS/STALE.
 
 # Fiat reference rates (USD/EUR/IRR) - index.html "live prices" panel.
+# Keyless on purpose: the provider's open endpoint needs no API key and has no
+# monthly quota, so this panel works with nothing to configure. Rates refresh once
+# a day upstream and arrive as `rates` (the keyed v6 endpoint used
+# `conversion_rates`, which index.html no longer reads).
 location = /api/fiat {
-    proxy_pass https://v6.exchangerate-api.com/v6/${EXCHANGE_API_KEY}/latest/USD;
-    proxy_set_header Host v6.exchangerate-api.com;
+    proxy_pass https://open.er-api.com/v6/latest/USD;
+    proxy_set_header Host open.er-api.com;
     proxy_ssl_server_name on;
     proxy_connect_timeout 5s;
     proxy_read_timeout 10s;
@@ -21,18 +24,16 @@ location = /api/fiat {
     proxy_cache prices;
     proxy_cache_key "$uri";
     proxy_ignore_headers Cache-Control Expires;
-    # 1 h = ~720 upstream calls/month, inside the 1,500/month free tier.
     proxy_cache_valid 200 1h;
     proxy_cache_lock on;
     proxy_cache_background_update on;
-    # A quota error (429) must not blank the panel: serve the last good rates.
     proxy_cache_use_stale error timeout updating http_429 http_500 http_502 http_503 http_504;
     add_header X-Price-Cache $upstream_cache_status always;
     add_header Cache-Control "no-store" always;
 }
 
 # Crypto prices (BTC/ETH/USDT) - same panel. Needs CRYPTOCOMPARE_API_KEY;
-# without it the upstream answers 401 and the three crypto rows stay empty.
+# without a valid key the upstream answers 401 and the three crypto rows stay empty.
 location = /api/crypto {
     proxy_pass https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,USDT&tsyms=USD;
     proxy_set_header Host min-api.cryptocompare.com;

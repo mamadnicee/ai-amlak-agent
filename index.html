@@ -366,17 +366,19 @@
   calculateMortgage();
 
   // 7. PRICES
-  // Both calls go through same-origin proxies so the provider API keys stay
-  // server-side (see nginx-prices.conf.template).
+  // Both calls go through same-origin proxies (see nginx-prices.conf.template).
+  // Fiat uses the provider's keyless open endpoint, which publishes the rates as
+  // `rates` (the keyed endpoint's field was `conversion_rates`). Crypto still
+  // needs a key, which nginx adds server-side and never ships to the browser.
   let priceHistory = Array(30).fill(3000000000);
   let usdToIrr = 0;
   async function fetchFiatPrices() {
     try {
       const fiatRes = await fetch('/api/fiat');
       const fiatData = await fiatRes.json();
-      usdToIrr = fiatData.conversion_rates.IRR;
+      usdToIrr = fiatData.rates.IRR;
       document.getElementById('usdPrice').textContent = formatNumber(usdToIrr);
-      document.getElementById('eurPrice').textContent = formatNumber(usdToIrr / fiatData.conversion_rates.EUR);
+      document.getElementById('eurPrice').textContent = formatNumber(usdToIrr / fiatData.rates.EUR);
       document.getElementById('goldPrice').textContent = formatNumber((2650 / 31.1035) * usdToIrr);
     } catch (e) { console.error(e); }
   }

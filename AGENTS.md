@@ -51,9 +51,12 @@ Both price providers are called **server-side through nginx** (`/api/fiat`, `/ap
 keys never reach the browser. The page fetches same-origin and nginx injects the credential.
 Do not move these calls back into the page or hardcode a key in `index.html`.
 
-- `EXCHANGE_API_KEY` — ExchangeRate-API, used by `/api/fiat`.
-- `CRYPTOCOMPARE_API_KEY` — CoinDesk/CryptoCompare, used by `/api/crypto` (the keyless endpoint
-  answers `401 API key required`).
+- `/api/fiat` needs **no key at all**: it proxies ExchangeRate-API's keyless open endpoint
+  (`open.er-api.com/v6/latest/USD`), which carries the same 166-currency set including IRR. Its field
+  is `rates` — *not* the keyed endpoint's `conversion_rates` — and `index.html` reads
+  `fiatData.rates`. Do not reintroduce `EXCHANGE_API_KEY`: the stored value is over quota and unused.
+- `CRYPTOCOMPARE_API_KEY` — CoinDesk/CryptoCompare, used by `/api/crypto`. Without a valid key the
+  upstream answers `401 API key required` and the three crypto rows stay empty.
 
 Both proxies are **cached** (`proxy_cache_path ... keys_zone=prices` in `nginx.base44.conf`, TTLs in
 the template: 1 h fiat / 60 s crypto) because the page polls every 10 s. Upstream is called at most
@@ -69,10 +72,10 @@ It is listed first in `env_file:` so `/run/base44/app.env` always overrides it.
 ### Known limitations, not environment problems
 - The chat panels POST to a hardcoded n8n webhook (`https://mragent.app.n8n.cloud/webhook/chat`).
   It is the owner's own service, needs no secret, and responds 200.
-- `index.html` polls its prices every 10 s on every page load — far more than the ExchangeRate-API
-  free tier allows (1,500 req/month). The nginx proxy cache absorbs that (see `## API keys`); without
-  it any free key is exhausted within days and the provider answers `429 quota-reached`. That 429 is
-  the provider refusing the key, not a proxy bug.
+- `index.html` polls its prices every 10 s on every page load. That is what exhausted the old
+  ExchangeRate key (1,500 req/month free tier) and why fiat is now keyless. The nginx proxy cache
+  absorbs the polling for both endpoints (see `## API keys`). A `429` from a provider is the provider
+  refusing the credential, not a proxy bug.
 
 ### Pre-existing broken links
 `index.html` links to `chat-car.html`, `chat-contract.html`, `chat-finance.html`, `chat-search.html`

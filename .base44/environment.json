@@ -4,13 +4,8 @@
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
   "secrets": [
     {
-      "name": "EXCHANGE_API_KEY",
-      "description": "ExchangeRate-API key, used server-side by the /api/fiat proxy for the live USD/EUR/gold rates panel. The stored value is the old key and is over quota (provider answers 429 quota-reached), so it must be replaced with a fresh key before the panel shows numbers. Optional for boot.",
-      "requiredAtBoot": false
-    },
-    {
       "name": "CRYPTOCOMPARE_API_KEY",
-      "description": "CoinDesk (CryptoCompare) API key, used server-side by the /api/crypto proxy for the BTC/ETH/USDT rates. A value is stored but the provider does not recognise it (401 API key required, tested with both the Authorization header and the api_key query parameter), so the real key from the CryptoCompare account page is needed. Optional for boot.",
+      "description": "CoinDesk (CryptoCompare) API key, used server-side by the /api/crypto proxy for the BTC/ETH/USDT rates. A value is stored but the provider does not recognise it (401 API key required, tested with both the Authorization header and the api_key query parameter), so the real key from the CryptoCompare account page is needed before those three rows fill in. The fiat (USD/EUR/gold) rows need no key. Optional for boot.",
       "requiredAtBoot": false
     }
   ]
