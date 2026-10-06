@@ -1,0 +1,27 @@
+# Base44 development environment.
+#
+# This project is a pure static site (HTML/CSS/JS + assets, no build step and
+# no backend). nginx serves the repository directly from the bind mount, so
+# source edits are visible immediately on refresh -- there is no bundling
+# step that could freeze the code.
+#
+#   docker compose -f docker-compose.base44.yml up -d --build
+#
+# Web entry point: http://localhost:3000  (public preview: port 3000)
+
+services:
+  web:
+    image: nginx:alpine
+    restart: on-failure
+    ports:
+      - "3000:80"
+    volumes:
+      # Serve the live repository source, not a prebuilt image.
+      - ./:/usr/share/nginx/html:ro
+      - ./nginx.base44.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/index.html || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
