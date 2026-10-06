@@ -30,6 +30,22 @@ it is written — but the **browser** still needs a refresh. After any change, c
    included *inside* the server block of `nginx.base44.conf`. The output dir is overridden with
    `NGINX_ENVSUBST_OUTPUT_DIR` and must pre-exist as a writable directory (hence the volume).
 
+## Motion / animation rules (index.html + style.css)
+Hard-won constraints — please keep them when touching the animation code:
+- **Never put `filter: blur()` in scroll-driven GSAP tweens**, and never put `drop-shadow()` filters on
+  the rotating `.led-border::after` ring. Both force an offscreen blur pass *per element per frame*;
+  on this page (many glass cards over a WebGL canvas) they were the main source of scroll jank.
+  LED bloom comes from the **static** `box-shadow` on `.led-border` instead.
+- The three scene cuts live in one scrubbed timeline. Two details matter:
+  - the timeline is padded to exactly 1.0 with `tl.to({}, { duration: 0.0001 }, 1)` so a cut at
+    timeline position 0.25 lines up with scroll progress 0.25 — that is what the `ledFlash`
+    thresholds in `onUpdate` compare against;
+  - the car's rotation tween is centred **on** the cut (`at - CUT`, duration `CUT * 2`,
+    `power1.inOut`) so its peak angular velocity lands exactly at the background crossfade and the
+    cut is hidden by the motion, film-style. The car is never toggled `visible` — that used to blink.
+- Motion should stay transform/opacity only; `ScrollTrigger` scrub is deliberately tight (0.65) so
+  the 3D does not trail the scroll.
+
 ## API keys
 Both price providers are called **server-side through nginx** (`/api/fiat`, `/api/crypto`), so the
 keys never reach the browser. The page fetches same-origin and nginx injects the credential.

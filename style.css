@@ -43,16 +43,17 @@ html.lenis, html.lenis body { height: auto; }
    LIQUID GLASS
    ============================================ */
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.44);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 8px 32px rgba(0, 100, 200, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    4px 10px 30px rgba(0, 90, 190, 0.09),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(0, 60, 140, 0.05);
 }
 
 .liquid-glass::before {
@@ -75,16 +76,17 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 .liquid-glass-strong {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 12px 40px rgba(0, 100, 200, 0.12),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    6px 14px 40px rgba(0, 90, 190, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.92),
+    inset 0 -1px 1px rgba(0, 60, 140, 0.05);
 }
 
 .liquid-glass-strong::before {
@@ -111,6 +113,13 @@ html.lenis, html.lenis body { height: auto; }
    ============================================ */
 .led-border {
   position: relative;
+  /* درخشش ثابت LED: یک‌بار رنگ می‌شود و هر فریم بازترسیم نمی‌خواهد
+     (جایگزین دو drop-shadow فیلتر روی لایه‌ی چرخان) */
+  box-shadow:
+    0 12px 32px rgba(0, 110, 210, 0.14),
+    0 0 26px rgba(0, 212, 255, 0.24),
+    0 0 56px rgba(124, 108, 240, 0.13),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 .led-border::after {
@@ -118,22 +127,22 @@ html.lenis, html.lenis body { height: auto; }
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 1.1px;
   background: conic-gradient(
     from var(--led-angle, 0deg),
-    transparent 0deg,
-    transparent 200deg,
-    #00d4ff 260deg,
-    #7c6cf0 300deg,
-    #0096ff 340deg,
-    transparent 360deg
+    rgba(255, 255, 255, 0.10) 0deg,
+    rgba(0, 212, 255, 0.30) 130deg,
+    #00d4ff 248deg,
+    #ffffff 268deg,
+    #7c6cf0 296deg,
+    rgba(124, 108, 240, 0.22) 340deg,
+    rgba(255, 255, 255, 0.10) 360deg
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  animation: ledRotate 4s linear infinite;
-  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.9)) drop-shadow(0 0 16px rgba(124, 108, 240, 0.5));
+  animation: ledRotate 4.5s linear infinite;
   z-index: 2;
 }
 
@@ -156,6 +165,7 @@ html.lenis, html.lenis body { height: auto; }
   z-index: 20;
   pointer-events: none;
   opacity: 0;
+  will-change: opacity;
   background: radial-gradient(ellipse at center,
     rgba(0, 212, 255, 0.55) 0%,
     rgba(124, 108, 240, 0.35) 40%,
@@ -202,12 +212,19 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 .bg-scan {
-  position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: 0.05;
-  background-image: repeating-linear-gradient(0deg,
-    rgba(0, 150, 255, 0.05) 0px,
-    rgba(0, 150, 255, 0.05) 1px,
-    transparent 1px,
-    transparent 4px);
+  position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: 0.06;
+  /* شبکه‌ی ریز LED — افقی روشن‌تر، عمودی محو‌تر */
+  background-image:
+    repeating-linear-gradient(0deg,
+      rgba(0, 150, 255, 0.06) 0px,
+      rgba(0, 150, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 3px),
+    repeating-linear-gradient(90deg,
+      rgba(0, 150, 255, 0.035) 0px,
+      rgba(0, 150, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 3px);
   mix-blend-mode: overlay;
 }
 
@@ -499,7 +516,7 @@ html.lenis, html.lenis body { height: auto; }
   align-items: center;
   gap: 8px;
   min-width: 140px;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mini-card:hover {
@@ -532,7 +549,7 @@ html.lenis, html.lenis body { height: auto; }
   text-decoration: none;
   color: var(--text-dark);
   min-width: 100px;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mini-card-link:hover {
@@ -580,7 +597,7 @@ html.lenis, html.lenis body { height: auto; }
   text-align: center;
   flex: 1;
   min-width: 180px;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mini-card-wide:hover {
@@ -621,7 +638,7 @@ html.lenis, html.lenis body { height: auto; }
   gap: 10px;
   padding: 14px 18px;
   border-radius: 24px;
-  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .floating-dock.dock-visible {
@@ -710,7 +727,7 @@ html.lenis, html.lenis body { height: auto; }
   border-radius: 24px;
   padding: 30px;
   overflow-y: auto;
-  animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: modalSlideUp 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes modalSlideUp {
