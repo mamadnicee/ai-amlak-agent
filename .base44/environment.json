@@ -1,0 +1,12 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "CRYPTOCOMPARE_API_KEY",
+      "description": "CoinDesk (CryptoCompare) API key, used server-side by the /api/crypto proxy for the BTC/ETH/USDT rates. A value is stored but the provider does not recognise it (401 API key required, tested with both the Authorization header and the api_key query parameter), so the real key from the CryptoCompare account page is needed before those three rows fill in. The fiat (USD/EUR/gold) rows need no key. Optional for boot.",
+      "requiredAtBoot": false
+    }
+  ]
+}

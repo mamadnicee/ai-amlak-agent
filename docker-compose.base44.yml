@@ -1,0 +1,32 @@
+services:
+  web:
+    image: nginx:alpine
+    restart: on-failure
+    ports:
+      - "3000:80"
+    # Platform-managed secrets (API keys). Listed LAST so the user's dashboard
+    # values always win over anything else. Never add these keys to
+    # `environment:`, which would permanently outrank this file.
+    env_file:
+      - ./.env.base44-defaults # placeholders only; the entry below always wins
+      - /run/base44/app.env
+    environment:
+      # Where the image's envsubst step writes the rendered proxy config
+      # (default is /etc/nginx/conf.d, which this stack does not use).
+      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/generated
+    volumes:
+      # Serve the live repository source, not a prebuilt image.
+      - ./:/usr/share/nginx/html:ro
+      - ./nginx.base44.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-prices.conf.template:/etc/nginx/templates/prices.conf.template:ro
+      # envsubst needs this dir to pre-exist; the rendered config lives only here.
+      - nginx-generated:/etc/nginx/generated
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/index.html || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  nginx-generated:
