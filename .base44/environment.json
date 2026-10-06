@@ -5,12 +5,12 @@
   "secrets": [
     {
       "name": "EXCHANGE_API_KEY",
-      "description": "ExchangeRate-API key used server-side by the /api/fiat proxy for the live USD/EUR/gold rates panel. Optional for boot.",
+      "description": "ExchangeRate-API key, used server-side by the /api/fiat proxy for the live USD/EUR/gold rates panel. The stored value is out of quota (upstream answers 429 quota-reached) and needs replacing. Optional for boot.",
       "requiredAtBoot": false
     },
     {
       "name": "CRYPTOCOMPARE_API_KEY",
-      "description": "CoinDesk (CryptoCompare) API key used server-side by the /api/crypto proxy for the BTC/ETH/USDT rates. Optional for boot.",
+      "description": "CoinDesk (CryptoCompare) API key, used server-side by the /api/crypto proxy for the BTC/ETH/USDT rates. Never provided yet, so the upstream answers 401 API key required. Optional for boot.",
       "requiredAtBoot": false
     }
   ]

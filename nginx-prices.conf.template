@@ -4,6 +4,11 @@
 # These proxies exist so the API keys are never shipped to the browser: the
 # static page fetches same-origin /api/fiat and /api/crypto, and nginx adds the
 # credentials on the way out.
+#
+# Both locations are cached (see `proxy_cache_path` in nginx.base44.conf). The
+# page polls every 10 s, which burns a free-tier quota within days, so upstream is
+# called at most once per TTL and the last good rates are served if the provider
+# errors. `X-Price-Cache` reports HIT/MISS/STALE for debugging.
 
 # Fiat reference rates (USD/EUR/IRR) - index.html "live prices" panel.
 location = /api/fiat {
@@ -12,6 +17,18 @@ location = /api/fiat {
     proxy_ssl_server_name on;
     proxy_connect_timeout 5s;
     proxy_read_timeout 10s;
+
+    proxy_cache prices;
+    proxy_cache_key "$uri";
+    proxy_ignore_headers Cache-Control Expires;
+    # 1 h = ~720 upstream calls/month, inside the 1,500/month free tier.
+    proxy_cache_valid 200 1h;
+    proxy_cache_lock on;
+    proxy_cache_background_update on;
+    # A quota error (429) must not blank the panel: serve the last good rates.
+    proxy_cache_use_stale error timeout updating http_429 http_500 http_502 http_503 http_504;
+    add_header X-Price-Cache $upstream_cache_status always;
+    add_header Cache-Control "no-store" always;
 }
 
 # Crypto prices (BTC/ETH/USDT) - same panel. Needs CRYPTOCOMPARE_API_KEY;
@@ -23,4 +40,15 @@ location = /api/crypto {
     proxy_ssl_server_name on;
     proxy_connect_timeout 5s;
     proxy_read_timeout 10s;
+
+    proxy_cache prices;
+    proxy_cache_key "$uri";
+    proxy_ignore_headers Cache-Control Expires;
+    # Crypto tiers are roomier: 60 s keeps the panel live at one call/minute.
+    proxy_cache_valid 200 60s;
+    proxy_cache_lock on;
+    proxy_cache_background_update on;
+    proxy_cache_use_stale error timeout updating http_429 http_500 http_502 http_503 http_504;
+    add_header X-Price-Cache $upstream_cache_status always;
+    add_header Cache-Control "no-store" always;
 }
