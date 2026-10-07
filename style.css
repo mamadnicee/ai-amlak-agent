@@ -144,8 +144,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   EYEBROW + SUBTITLE — کامپکت، بالا
-   ⚡ گروه در فضای بین navbar و title، با فاصله متعادل
+   EYEBROW + SUBTITLE — دسکتاپ
    ========================================================= */
 
 .hero-eyebrow {
@@ -179,7 +178,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   TITLE — وسط صفحه، پشت ماشین
+   TITLE
    ========================================================= */
 
 .hero-title {
@@ -209,7 +208,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   HERO BUTTON — فقط موبایل
+   HERO BUTTON
    ========================================================= */
 
 .hero-button {
@@ -531,7 +530,8 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE — فواصل یکدست و دقیق
+   ⚡ گام‌های ۲۰px بین همه عناصر
    ========================================================= */
 
 @media (max-width: 768px) {
@@ -551,14 +551,16 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
   .hero { height: 100svh; min-height: unset; }
 
+  /* eyebrow: 20px از navbar (64px) */
   .hero-eyebrow {
-    top: 82px;
+    top: 84px;
     font-size: 6px;
     letter-spacing: 3px;
   }
 
+  /* title: 22px از eyebrow (eyebrow 6px قد → 90) */
   .hero-title {
-    top: 108px;
+    top: 112px;
     transform: translateX(-50%);
     width: 92vw;
   }
@@ -568,8 +570,9 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     letter-spacing: -.05em;
   }
 
+  /* subtitle: دقیقاً زیر title (title ~128px ارتفاع → می‌رسه به 240) */
   .hero-subtitle {
-    top: 252px;
+    top: 262px;
     font-size: 10px;
     line-height: 1.6;
     white-space: normal;
@@ -577,10 +580,11 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     padding: 0 10px;
   }
 
+  /* button: 22px از subtitle (subtitle 2 خط = 32px → 294) */
   .hero-button {
     display: inline-flex;
     position: absolute;
-    top: 300px;
+    top: 316px;
     left: 50%;
     transform: translateX(-50%);
     pointer-events: auto;
