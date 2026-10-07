@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="AI Real Estate — Vehicle Intelligence Engine"
+  >
+
+  <meta name="theme-color" content="#f4f4f2">
+
+  <title>Vehicle Intelligence — AI Real Estate</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       LOADER
+       ===================================================== -->
+
+  <div id="loader">
+
+    <div class="loader-inner">
+
+      <div class="loader-logo">
+        AI.RE
+      </div>
+
+      <div class="loader-line">
+        <span id="loaderProgress"></span>
+      </div>
+
+      <div class="loader-status">
+        INITIALIZING VEHICLE INTELLIGENCE
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       NAVBAR
+       ===================================================== -->
+
+  <header class="navbar" id="navbar">
+
+    <a
+      href="../index.html"
+      class="back"
+      aria-label="Back to AI Real Estate"
+    >
+      <span></span>
+    </a>
+
+    <div class="brand">
+      <span>AI</span>
+      <strong>VEHICLE</strong>
+    </div>
+
+    <div class="nav-right">
+
+      <span class="nav-status">
+        <i></i>
+        AI ONLINE
+      </span>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main>
+
+
+    <!-- ===================================================
+         HERO
+         =================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-eyebrow">
+        VEHICLE INTELLIGENCE ENGINE
+      </div>
+
+      <div class="hero-title">
+
+        <h1>
+
+          READ ANY<br>
+
+          <span>VEHICLE.</span>
+
+        </h1>
+
+      </div>
+
+      <div class="hero-subtitle">
+        Global vehicle database · Live specifications · AI analysis
+      </div>
+
+      <div class="hero-bottom">
+        AI.RE / VEHICLE INTELLIGENCE
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         SEARCH PANEL
+         =================================================== -->
+
+    <section class="search-section" id="search">
+
+      <div class="section-head">
+
+        <span class="section-number">01 / SELECT</span>
+
+        <h2 class="section-title">
+          CHOOSE ANY VEHICLE<br>
+          <span>FROM ANYWHERE.</span>
+        </h2>
+
+        <p class="section-desc">
+          Pick a brand, year and model — our engine
+          will pull the specifications from global
+          databases and analyze it instantly.
+        </p>
+
+      </div>
+
+
+      <div class="search-panel">
+
+        <div class="search-grid">
+
+          <div class="field">
+            <label for="brandSelect">BRAND</label>
+            <select id="brandSelect">
+              <option value="">Loading brands…</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="yearSelect">YEAR</label>
+            <select id="yearSelect">
+              <option value="">Select year</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="modelSelect">MODEL</label>
+            <select id="modelSelect" disabled>
+              <option value="">Select brand first</option>
+            </select>
+          </div>
+
+        </div>
+
+
+        <button
+          class="analyze-btn"
+          id="analyzeBtn"
+          disabled
+        >
+          <span>Analyze vehicle</span>
+          <b>→</b>
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         RESULT
+         =================================================== -->
+
+    <section class="result-section" id="result">
+
+      <div class="result-grid">
+
+        <!-- LEFT: IMAGE -->
+        <div class="result-visual">
+
+          <div class="visual-frame">
+
+            <img
+              id="carImage"
+              src=""
+              alt="Vehicle"
+            >
+
+            <div class="visual-placeholder" id="visualPlaceholder">
+              <span>NO IMAGE YET</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT: INFO -->
+        <div class="result-info">
+
+          <span class="result-number">02 / READ</span>
+
+          <h2 class="result-title" id="carTitle">
+            —
+          </h2>
+
+          <p class="result-sub" id="carSub">
+            Waiting for analysis
+          </p>
+
+
+          <div class="specs-grid" id="specsGrid">
+
+            <div class="spec">
+              <small>MAKE</small>
+              <strong id="specMake">—</strong>
+            </div>
+
+            <div class="spec">
+              <small>MODEL</small>
+              <strong id="specModel">—</strong>
+            </div>
+
+            <div class="spec">
+              <small>YEAR</small>
+              <strong id="specYear">—</strong>
+            </div>
+
+            <div class="spec">
+              <small>BODY</small>
+              <strong id="specBody">—</strong>
+            </div>
+
+            <div class="spec">
+              <small>ENGINE</small>
+              <strong id="specEngine">—</strong>
+            </div>
+
+            <div class="spec">
+              <small>POWER</small>
+              <strong id="specPower">—</strong>
+            </div>
+
+            <div class="spec">
+              <small>TORQUE</small>
+              <strong id="specTorque">—</strong>
+            </div>
+
+            <div class="spec">
+              <small>FUEL</small>
+              <strong id="specFuel">—</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ANALYSIS — DARK
+         =================================================== -->
+
+    <section class="analysis-section">
+
+      <div class="analysis-header">
+        <span>VEHICLE INTELLIGENCE ENGINE</span>
+      </div>
+
+      <div class="analysis-content">
+
+        <div class="analysis-copy">
+
+          <span class="mini-label">WHAT THE SYSTEM READS</span>
+
+          <h2>
+            DATA<br>
+            BECOMES<br>
+            <span>INSIGHT.</span>
+          </h2>
+
+          <p>
+            Every vehicle carries a story — from engine
+            architecture to body class. The intelligence
+            layer reads it, organizes it and presents
+            a clear picture.
+          </p>
+
+        </div>
+
+
+        <div class="intelligence-panel">
+
+          <div class="panel-top">
+            <span>ANALYSIS LAYER</span>
+            <i></i>
+          </div>
+
+          <div class="signal">
+            <div class="signal-name">
+              <span>IDENTITY</span>
+              <strong>READY</strong>
+            </div>
+            <div class="signal-bar"><i></i></div>
+          </div>
+
+          <div class="signal">
+            <div class="signal-name">
+              <span>POWERTRAIN</span>
+              <strong>READY</strong>
+            </div>
+            <div class="signal-bar"><i></i></div>
+          </div>
+
+          <div class="signal">
+            <div class="signal-name">
+              <span>STRUCTURE</span>
+              <strong>READY</strong>
+            </div>
+            <div class="signal-bar"><i></i></div>
+          </div>
+
+          <div class="signal">
+            <div class="signal-name">
+              <span>SAFETY</span>
+              <strong>ANALYZING</strong>
+            </div>
+            <div class="signal-bar"><i></i></div>
+          </div>
+
+          <div class="panel-footer">
+            <span>DATA CONFIDENCE</span>
+            <strong>98.2%</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         FINAL
+         =================================================== -->
+
+    <section class="final-section">
+
+      <div class="final-glow"></div>
+
+      <div class="final-content">
+
+        <span class="final-label">VEHICLE INTELLIGENCE</span>
+
+        <h2>
+          READ MORE.<br>
+          <span>DECIDE BETTER.</span>
+        </h2>
+
+        <p>
+          Every vehicle. Every specification. One engine.
+        </p>
+
+        <a href="../index.html" class="return-button">
+          <span>RETURN TO AI REAL ESTATE</span>
+          <b>→</b>
+        </a>
+
+      </div>
+
+      <div class="final-footer">
+        <span>AI.RE</span>
+        <span>VEHICLE INTELLIGENCE</span>
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       SCRIPT
+       ===================================================== -->
+
+  <script>
+
+  (function () {
+
+    "use strict";
+
+    /* =====================================================
+       REVEAL + LOADER
+       ===================================================== */
+
+    const loader = document.getElementById("loader");
+    const loaderProgress = document.getElementById("loaderProgress");
+
+    window.addEventListener("load", () => {
+      if (loaderProgress) loaderProgress.style.width = "100%";
+      setTimeout(() => {
+        if (loader) loader.classList.add("hidden");
+      }, 500);
+    });
+
+
+    /* =====================================================
+       NAVBAR HIDE ON SCROLL
+       ===================================================== */
+
+    const navbar = document.getElementById("navbar");
+    let lastY = 0;
+
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY;
+      if (y > 60 && y > lastY) navbar.classList.add("nav-hidden");
+      else if (y < lastY - 6 || y < 60) navbar.classList.remove("nav-hidden");
+      lastY = y;
+    }, { passive: true });
+
+
+    /* =====================================================
+       API ENDPOINTS
+       ===================================================== */
+
+    const NHTSA_BASE =
+      "https://vpic.nhtsa.dot.gov/api/vehicles";
+
+
+    /* =====================================================
+       DOM
+       ===================================================== */
+
+    const brandSelect = document.getElementById("brandSelect");
+    const yearSelect  = document.getElementById("yearSelect");
+    const modelSelect = document.getElementById("modelSelect");
+    const analyzeBtn  = document.getElementById("analyzeBtn");
+
+    const carImage         = document.getElementById("carImage");
+    const visualPlaceholder = document.getElementById("visualPlaceholder");
+    const carTitle         = document.getElementById("carTitle");
+    const carSub           = document.getElementById("carSub");
+
+    const specMake   = document.getElementById("specMake");
+    const specModel  = document.getElementById("specModel");
+    const specYear   = document.getElementById("specYear");
+    const specBody   = document.getElementById("specBody");
+    const specEngine = document.getElementById("specEngine");
+    const specPower  = document.getElementById("specPower");
+    const specTorque = document.getElementById("specTorque");
+    const specFuel   = document.getElementById("specFuel");
+
+
+    /* =====================================================
+       POPULATE YEARS
+       ===================================================== */
+
+    const CURRENT_YEAR = new Date().getFullYear();
+
+    for (let y = CURRENT_YEAR; y >= 1990; y--) {
+      const opt = document.createElement("option");
+      opt.value = y;
+      opt.textContent = y;
+      yearSelect.appendChild(opt);
+    }
+
+
+    /* =====================================================
+       FETCH BRANDS FROM NHTSA
+       ===================================================== */
+
+    async function loadBrands() {
+
+      try {
+
+        const res = await fetch(
+          `${NHTSA_BASE}/GetMakesForVehicleType/car?format=json`
+        );
+
+        const data = await res.json();
+
+        const brands = data.Results
+          .map(b => b.MakeName)
+          .filter((v, i, a) => a.indexOf(v) === i)
+          .sort();
+
+        brandSelect.innerHTML = '<option value="">Select brand</option>';
+
+        brands.forEach(b => {
+          const opt = document.createElement("option");
+          opt.value = b;
+          opt.textContent = b;
+          brandSelect.appendChild(opt);
+        });
+
+      } catch (e) {
+
+        console.error("Brand load error:", e);
+
+        brandSelect.innerHTML =
+          '<option value="">Brands unavailable</option>';
+
+      }
+
+    }
+
+
+    /* =====================================================
+       FETCH MODELS (brand + year)
+       ===================================================== */
+
+    async function loadModels(brand, year) {
+
+      modelSelect.innerHTML =
+        '<option value="">Loading models…</option>';
+
+      modelSelect.disabled = true;
+
+      try {
+
+        const res = await fetch(
+          `${NHTSA_BASE}/GetModelsForMakeYear/make/${encodeURIComponent(brand)}/modelyear/${year}?format=json`
+        );
+
+        const data = await res.json();
+
+        const models = data.Results
+          .map(m => m.Model_Name)
+          .filter((v, i, a) => a.indexOf(v) === i)
+          .sort();
+
+        modelSelect.innerHTML =
+          '<option value="">Select model</option>';
+
+        models.forEach(m => {
+          const opt = document.createElement("option");
+          opt.value = m;
+          opt.textContent = m;
+          modelSelect.appendChild(opt);
+        });
+
+        modelSelect.disabled = false;
+
+      } catch (e) {
+
+        console.error("Model load error:", e);
+
+        modelSelect.innerHTML =
+          '<option value="">Models unavailable</option>';
+
+      }
+
+    }
+
+
+    /* =====================================================
+       FETCH VEHICLE SPECS
+       ===================================================== */
+
+    async function fetchVehicleSpecs(brand, year, model) {
+
+      try {
+
+        const res = await fetch(
+          `${NHTSA_BASE}/GetVehicleVariableValuesList?format=json`
+        );
+
+        /* fallback: use DecodeVinValues with a generic VIN search is unreliable,
+           so we use another endpoint: GetModelsForMakeYear returning details */
+
+        /* Try the "GetModelsForMakeYear" endpoint for extra details */
+        const detailsRes = await fetch(
+          `${NHTSA_BASE}/GetModelsForMakeYear/make/${encodeURIComponent(brand)}/modelyear/${year}?format=json`
+        );
+
+        const details = await detailsRes.json();
+
+        const found = details.Results.find(
+          r => r.Model_Name.toLowerCase() === model.toLowerCase()
+        );
+
+        return {
+          make:  brand,
+          model: model,
+          year:  year,
+          body:  found && found.VehicleTypeName
+                  ? found.VehicleTypeName
+                  : "—",
+          engine: "—",
+          power:  "—",
+          torque: "—",
+          fuel:   "—"
+        };
+
+      } catch (e) {
+
+        console.error("Spec error:", e);
+
+        return {
+          make: brand, model, year,
+          body: "—", engine: "—",
+          power: "—", torque: "—", fuel: "—"
+        };
+
+      }
+
+    }
+
+
+    /* =====================================================
+       FETCH WIKIPEDIA IMAGE
+       ===================================================== */
+
+    async function fetchWikipediaImage(brand, model) {
+
+      try {
+
+        const query = encodeURIComponent(`${brand} ${model}`);
+
+        const searchRes = await fetch(
+          `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&piprop=original&titles=${query}`
+        );
+
+        const searchData = await searchRes.json();
+
+        const pages = searchData.query.pages;
+        const firstPage = Object.values(pages)[0];
+
+        if (firstPage && firstPage.original && firstPage.original.source) {
+          return firstPage.original.source;
+        }
+
+        /* fallback: search opensearch */
+        const openRes = await fetch(
+          `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search=${query}&limit=1`
+        );
+
+        const openData = await openRes.json();
+
+        if (openData[1] && openData[1].length) {
+
+          const title = encodeURIComponent(openData[1][0]);
+
+          const pageRes = await fetch(
+            `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&piprop=original&titles=${title}`
+          );
+
+          const pageData = await pageRes.json();
+          const page = Object.values(pageData.query.pages)[0];
+
+          if (page.original && page.original.source) {
+            return page.original.source;
+          }
+
+        }
+
+        return null;
+
+      } catch (e) {
+
+        console.error("Wiki image error:", e);
+        return null;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       RENDER RESULT
+       ===================================================== */
+
+    async function renderResult(brand, year, model) {
+
+      carTitle.textContent = `${brand} ${model}`;
+      carSub.textContent   = `${year} · Global Specification`;
+
+      /* Specs */
+      const specs = await fetchVehicleSpecs(brand, year, model);
+
+      specMake.textContent   = specs.make;
+      specModel.textContent  = specs.model;
+      specYear.textContent   = specs.year;
+      specBody.textContent   = specs.body;
+      specEngine.textContent = specs.engine;
+      specPower.textContent  = specs.power;
+      specTorque.textContent = specs.torque;
+      specFuel.textContent   = specs.fuel;
+
+      /* Image */
+      carImage.style.display = "none";
+      visualPlaceholder.style.display = "flex";
+
+      const img = await fetchWikipediaImage(brand, model);
+
+      if (img) {
+
+        carImage.onload = () => {
+          carImage.style.display = "block";
+          visualPlaceholder.style.display = "none";
+        };
+
+        carImage.src = img;
+
+      }
+
+      /* Scroll to result */
+      document.getElementById("result").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    /* =====================================================
+       EVENTS
+       ===================================================== */
+
+    brandSelect.addEventListener("change", () => {
+
+      const brand = brandSelect.value;
+      const year  = yearSelect.value;
+
+      modelSelect.innerHTML =
+        '<option value="">Select brand & year</option>';
+
+      modelSelect.disabled = true;
+      analyzeBtn.disabled = true;
+
+      if (brand && year) loadModels(brand, year);
+
+    });
+
+    yearSelect.addEventListener("change", () => {
+
+      const brand = brandSelect.value;
+      const year  = yearSelect.value;
+
+      modelSelect.innerHTML =
+        '<option value="">Select brand & year</option>';
+
+      modelSelect.disabled = true;
+      analyzeBtn.disabled = true;
+
+      if (brand && year) loadModels(brand, year);
+
+    });
+
+    modelSelect.addEventListener("change", () => {
+      analyzeBtn.disabled = !modelSelect.value;
+    });
+
+    analyzeBtn.addEventListener("click", async () => {
+
+      const brand = brandSelect.value;
+      const year  = yearSelect.value;
+      const model = modelSelect.value;
+
+      if (!brand || !year || !model) return;
+
+      analyzeBtn.disabled = true;
+      analyzeBtn.querySelector("span").textContent = "Analyzing…";
+
+      await renderResult(brand, year, model);
+
+      analyzeBtn.disabled = false;
+      analyzeBtn.querySelector("span").textContent = "Analyze vehicle";
+
+    });
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    loadBrands();
+
+  })();
+
+  </script>
+
+
+</body>
+
+          </html>
