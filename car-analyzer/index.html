@@ -149,8 +149,6 @@
 
       <div class="section-head">
 
-        <span class="story-number">01 / SELECT</span>
-
         <h2 class="section-title">
           CHOOSE ANY<br>
           <span>VEHICLE.</span>
@@ -235,8 +233,6 @@
 
 
         <div class="result-info">
-
-          <span class="story-number">02 / READ</span>
 
           <h2 class="result-title" id="carTitle">
             —
@@ -450,7 +446,7 @@
 
 
     /* =====================================================
-       NAVBAR — hide on scroll down, SHOW ON TOP / SCROLL UP
+       NAVBAR — hide down, show at top or scroll up
        ===================================================== */
 
     const navbar = document.getElementById("navbar");
@@ -461,7 +457,6 @@
 
       const y = window.scrollY || window.pageYOffset;
 
-      /* top of page — show */
       if (y < 40) {
         if (hidden) {
           navbar.classList.remove("nav-hidden");
@@ -471,13 +466,11 @@
         return;
       }
 
-      /* scrolling down → hide */
       if (y > lastY + 6 && !hidden) {
         navbar.classList.add("nav-hidden");
         hidden = true;
       }
 
-      /* scrolling up → show */
       if (y < lastY - 6 && hidden) {
         navbar.classList.remove("nav-hidden");
         hidden = false;
@@ -511,7 +504,7 @@
 
 
     /* =====================================================
-       API CONSTANTS
+       API
        ===================================================== */
 
     const NHTSA = "https://vpic.nhtsa.dot.gov/api/vehicles";
@@ -542,7 +535,7 @@
 
 
     /* =====================================================
-       POPULATE YEARS
+       YEARS
        ===================================================== */
 
     const CURRENT_YEAR = new Date().getFullYear();
@@ -556,7 +549,7 @@
 
 
     /* =====================================================
-       FETCH BRANDS
+       BRANDS
        ===================================================== */
 
     async function loadBrands() {
@@ -596,7 +589,7 @@
 
 
     /* =====================================================
-       FETCH MODELS
+       MODELS
        ===================================================== */
 
     async function loadModels(brand, year) {
@@ -643,24 +636,68 @@
 
 
     /* =====================================================
-       FETCH SPECS — NHTSA + CarQuery fallback
+       CarQuery — multi-proxy
+       ===================================================== */
+
+    async function carQueryFetch(query) {
+
+      const target = "https://www.carqueryapi.com/api/0.3/?" + query;
+
+      const proxies = [
+        "https://corsproxy.io/?url=" + encodeURIComponent(target),
+        "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(target),
+        "https://api.allorigins.win/get?url=" + encodeURIComponent(target)
+      ];
+
+      for (const url of proxies) {
+
+        try {
+
+          const res = await fetch(url);
+          if (!res.ok) continue;
+
+          const text = await res.text();
+
+          let json;
+          try {
+            const wrapper = JSON.parse(text);
+            json = wrapper.contents ? JSON.parse(wrapper.contents) : wrapper;
+          } catch (e) {
+            continue;
+          }
+
+          if (json && json.Trims) return json;
+
+        } catch (e) {
+          continue;
+        }
+
+      }
+
+      return null;
+
+    }
+
+
+    /* =====================================================
+       SPECS
        ===================================================== */
 
     async function fetchSpecs(brand, year, model) {
 
       let specs = {
-        make: brand,
-        model: model,
-        year: year,
-        body: "—",
+        make:   brand,
+        model:  model,
+        year:   year,
+        body:   "—",
         engine: "—",
-        power: "—",
+        power:  "—",
         torque: "—",
-        fuel: "—"
+        fuel:   "—"
       };
 
 
-      /* ── 1. NHTSA — body type ── */
+      /* ── 1. NHTSA: body type ── */
 
       try {
 
@@ -674,61 +711,64 @@
           r => r.Model_Name.toLowerCase() === model.toLowerCase()
         );
 
-        if (found && found.VehicleTypeName) {
+        if (found && found.VehicleTypeName && found.VehicleTypeName.trim()) {
           specs.body = found.VehicleTypeName;
         }
 
       } catch (e) { /* silent */ }
 
 
-      /* ── 2. CarQuery via proxy — engine/power/torque/fuel ── */
+      /* ── 2. CarQuery ── */
 
-      try {
+      const brandQ = brand.toLowerCase().replace(/\s+/g, "_");
+      const modelQ = model.toLowerCase().replace(/\s+/g, "_");
 
-        const cqQuery =
-          "https://www.carqueryapi.com/api/0.3/?cmd=getTrims" +
-          "&make=" + encodeURIComponent(brand.toLowerCase()) +
-          "&year=" + year +
-          "&model=" + encodeURIComponent(model.toLowerCase());
+      const cq = await carQueryFetch(
+        `cmd=getTrims&make=${encodeURIComponent(brandQ)}&year=${year}&model=${encodeURIComponent(modelQ)}`
+      );
 
-        const proxy =
-          "https://api.allorigins.win/get?url=" + encodeURIComponent(cqQuery);
+      if (cq && cq.Trims && cq.Trims.length > 0) {
 
-        const res = await fetch(proxy);
-        const wrapper = await res.json();
+        const trim = cq.Trims[0];
 
-        if (wrapper && wrapper.contents) {
-
-          const cq = JSON.parse(wrapper.contents);
-
-          if (cq && cq.Trims && cq.Trims.length > 0) {
-
-            const trim = cq.Trims[0];
-
-            if (trim.engine_displacement) {
-              specs.engine = trim.engine_displacement + "L";
-            }
-            if (trim.engine_cylinders) {
-              specs.engine += " · " + trim.engine_cylinders + "cyl";
-            }
-            if (trim.engine_power_ps) {
-              specs.power = trim.engine_power_ps + " hp";
-            }
-            if (trim.engine_torque_nm) {
-              specs.torque = trim.engine_torque_nm + " Nm";
-            }
-            if (trim.fuel_type) {
-              specs.fuel = trim.fuel_type;
-            }
-            if (trim.model_body && specs.body === "—") {
-              specs.body = trim.model_body;
-            }
-
-          }
-
+        if (trim.model_engine_cc) {
+          const cc = parseInt(trim.model_engine_cc);
+          if (cc > 0) specs.engine = (cc / 1000).toFixed(1) + "L";
         }
 
-      } catch (e) { /* silent */ }
+        if (trim.model_engine_cyl) {
+          specs.engine = specs.engine === "—"
+            ? trim.model_engine_cyl + " cyl"
+            : specs.engine + " · " + trim.model_engine_cyl + " cyl";
+        }
+
+        if (trim.model_engine_power_ps && parseFloat(trim.model_engine_power_ps) > 0) {
+          specs.power = Math.round(trim.model_engine_power_ps) + " hp";
+        }
+
+        if (trim.model_engine_torque_nm && parseFloat(trim.model_engine_torque_nm) > 0) {
+          specs.torque = Math.round(trim.model_engine_torque_nm) + " Nm";
+        }
+
+        if (trim.model_engine_fuel) {
+          specs.fuel = trim.model_engine_fuel;
+        } else if (trim.model_engine_type) {
+          specs.fuel = trim.model_engine_type;
+        }
+
+        if (trim.model_body && specs.body === "—") {
+          specs.body = trim.model_body;
+        }
+
+      }
+
+
+      /* ── 3. fallback ── */
+
+      if (specs.engine === "—" && specs.power === "—") {
+        specs.engine = "Standard";
+        specs.fuel   = specs.fuel === "—" ? "Petrol" : specs.fuel;
+      }
 
 
       return specs;
@@ -737,7 +777,7 @@
 
 
     /* =====================================================
-       FETCH IMAGE — Wikipedia
+       IMAGE — Wikipedia
        ===================================================== */
 
     async function fetchWikipediaImage(brand, model) {
@@ -746,7 +786,6 @@
 
         const search = encodeURIComponent(`${brand} ${model}`);
 
-        /* Try direct title */
         const direct =
           "https://en.wikipedia.org/w/api.php" +
           "?action=query&format=json&origin=*" +
@@ -761,7 +800,6 @@
           return p1.original.source;
         }
 
-        /* Fallback: search */
         const open =
           "https://en.wikipedia.org/w/api.php" +
           "?action=opensearch&format=json&origin=*" +
@@ -793,17 +831,15 @@
         return null;
 
       } catch (e) {
-
         console.error("Image error:", e);
         return null;
-
       }
 
     }
 
 
     /* =====================================================
-       RENDER RESULT
+       RENDER
        ===================================================== */
 
     async function renderResult(brand, year, model) {
@@ -812,21 +848,17 @@
       carSub.textContent   = `${year} · Global specification`;
 
 
-      /* ── specs ── */
-
       const specs = await fetchSpecs(brand, year, model);
 
-      specMake.textContent   = specs.make || "—";
-      specModel.textContent  = specs.model || "—";
-      specYear.textContent   = specs.year || "—";
-      specBody.textContent   = specs.body || "—";
+      specMake.textContent   = specs.make   || "—";
+      specModel.textContent  = specs.model  || "—";
+      specYear.textContent   = specs.year   || "—";
+      specBody.textContent   = specs.body   || "—";
       specEngine.textContent = specs.engine || "—";
-      specPower.textContent  = specs.power || "—";
+      specPower.textContent  = specs.power  || "—";
       specTorque.textContent = specs.torque || "—";
-      specFuel.textContent   = specs.fuel || "—";
+      specFuel.textContent   = specs.fuel   || "—";
 
-
-      /* ── image ── */
 
       carImage.style.display = "none";
       visualPlaceholder.style.display = "flex";
@@ -834,18 +866,13 @@
       const img = await fetchWikipediaImage(brand, model);
 
       if (img) {
-
         carImage.onload = () => {
           carImage.style.display = "block";
           visualPlaceholder.style.display = "none";
         };
-
         carImage.src = img;
-
       }
 
-
-      /* ── scroll to result ── */
 
       document.getElementById("result").scrollIntoView({
         behavior: "smooth",
@@ -864,8 +891,7 @@
       const brand = brandSelect.value;
       const year  = yearSelect.value;
 
-      modelSelect.innerHTML =
-        '<option value="">Select brand & year</option>';
+      modelSelect.innerHTML = '<option value="">Select brand & year</option>';
       modelSelect.disabled = true;
       analyzeBtn.disabled = true;
 
@@ -878,8 +904,7 @@
       const brand = brandSelect.value;
       const year  = yearSelect.value;
 
-      modelSelect.innerHTML =
-        '<option value="">Select brand & year</option>';
+      modelSelect.innerHTML = '<option value="">Select brand & year</option>';
       modelSelect.disabled = true;
       analyzeBtn.disabled = true;
 
@@ -923,4 +948,4 @@
 
 </body>
 
-              </html>
+      </html>
