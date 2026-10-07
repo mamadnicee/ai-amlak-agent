@@ -406,9 +406,9 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   margin-top: 60px;
   width: min(430px, 85vw);
   padding: 25px;
-  border: 1px solid rgba(255,255,255,.12);
+  border: 1px solid rgba(0,0,0,.12);
   border-radius: 20px;
-  background: rgba(255,255,255,.03);
+  background: rgba(255,255,255,.6);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -421,6 +421,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 .match-card strong {
   display: block; margin-top: 6px; font-size: 40px;
   font-weight: 400; font-family: 'Space Grotesk', sans-serif;
+  color: #080808;
 }
 .match-status {
   color: #7567ff; font-size: 8px; letter-spacing: 2px;
@@ -484,12 +485,15 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   PROPERTY / VEHICLE ENTRY
+   PROPERTY / VEHICLE / CAR ENTRY — کلیک‌پذیر
    ========================================================= */
 
 .property-entry,
-.vehicle-entry { cursor: pointer; transition: background .5s ease; }
-.property-entry:hover { background: #eeeeec; }
+.vehicle-entry,
+.car-entry { cursor: pointer; transition: background .5s ease; }
+
+.property-entry:hover,
+.car-entry:hover { background: #eeeeec; }
 
 .property-enter {
   margin-top: 35px;
@@ -502,10 +506,13 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   transition: color .3s ease, transform .3s ease;
   font-family: 'Space Grotesk', sans-serif;
 }
+
 .property-entry:hover .property-enter,
-.vehicle-entry:hover .property-enter {
+.vehicle-entry:hover .property-enter,
+.car-entry:hover .property-enter {
   color: #000; transform: translateX(-8px);
 }
+
 .property-enter b { font-size: 16px; font-weight: 400; }
 
 
@@ -530,8 +537,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   MOBILE — فواصل یکدست و دقیق (20px بین همه عناصر بالا)
-   ⚡ فقط فواصل متن‌های بالای button اصلاح شد — button و car ثابت
+   MOBILE
    ========================================================= */
 
 @media (max-width: 768px) {
@@ -551,14 +557,12 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
   .hero { height: 100svh; min-height: unset; }
 
-  /* eyebrow: 20px بعد از navbar (64+20=84) */
   .hero-eyebrow {
     top: 84px;
     font-size: 6px;
     letter-spacing: 3px;
   }
 
-  /* title: 20px بعد از eyebrow (eyebrow ends ~90 → +20 = 110) */
   .hero-title {
     top: 110px;
     transform: translateX(-50%);
@@ -570,7 +574,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     letter-spacing: -.05em;
   }
 
-  /* subtitle: 20px بعد از title (title ends ~228 → +20 = 248) */
   .hero-subtitle {
     top: 248px;
     font-size: 10px;
@@ -580,7 +583,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     padding: 0 10px;
   }
 
-  /* button: 20px بعد از subtitle (subtitle ends ~280 → +20 = 300) — ثابت */
   .hero-button {
     display: inline-flex;
     position: absolute;
