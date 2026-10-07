@@ -1,168 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="AI Real Estate Vehicle Intelligence">
+<meta name="theme-color" content="#f4f4f2">
+<title>Vehicle Intelligence — AI Real Estate</title>
 
-  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
-  >
-
-  <meta
-    name="description"
-    content="AI Real Estate — Vehicle Intelligence Engine"
-  >
-
-  <meta name="theme-color" content="#f4f4f2">
-
-  <title>Vehicle Intelligence — AI Real Estate</title>
-
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-
-  <link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
 
-
-  <!-- =====================================================
-       LOADER
-       ===================================================== -->
-
-  <div id="loader">
-
-    <div class="loader-inner">
-
-      <div class="loader-logo">
-        AI.RE
-      </div>
-
-      <div class="loader-line">
-        <span id="loaderProgress"></span>
-      </div>
-
-      <div class="loader-status">
-        INITIALIZING VEHICLE INTELLIGENCE
-      </div>
-
-    </div>
-
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-brand">AI.RE</div>
+    <div class="loader-line"><span id="loaderProgress"></span></div>
+    <div class="loader-status">VEHICLE INTELLIGENCE / INITIALIZING</div>
   </div>
+</div>
 
+<!-- NAV -->
+<header class="navbar" id="navbar">
+  <a href="../index.html" class="back" aria-label="Back">
+    <span></span>
+  </a>
+  <div class="brand">
+    <span>AI</span>
+    <strong>VEHICLE</strong>
+  </div>
+  <div class="nav-right">
+    <span class="online"><i></i> AI ONLINE</span>
+  </div>
+</header>
 
-
-  <!-- =====================================================
-       NAVBAR
-       ===================================================== -->
-
-  <header class="navbar" id="navbar">
-
-    <a
-      href="../index.html"
-      class="back"
-      aria-label="Back to AI Real Estate"
-    >
-      <span></span>
-    </a>
-
-    <div class="brand">
-      <span>AI</span>
-      <strong>VEHICLE</strong>
-    </div>
-
-    <div class="nav-right">
-
-      <span class="nav-status">
-        <i></i>
-        AI ONLINE
-      </span>
-
-    </div>
-
-  </header>
-
-
+<main>
 
   <!-- =====================================================
-       MAIN
+       HERO
        ===================================================== -->
+  <section class="hero">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-  <main>
+    <div class="hero-center">
+      <div class="eyebrow" data-reveal="fade-up">VEHICLE INTELLIGENCE ENGINE</div>
 
+      <h1 data-reveal="fade-up" data-delay="1">
+        READ ANY<br>
+        <span>VEHICLE.</span>
+      </h1>
 
-    <!-- ===================================================
-         HERO
-         =================================================== -->
+      <div class="title-line" data-reveal="line" data-delay="2"></div>
 
-    <section class="hero">
+      <p class="hero-intro" data-reveal="fade-up" data-delay="3">
+        Global vehicle database · Live specifications
+        · AI-powered analysis from any brand, any year,
+        any model.
+      </p>
+    </div>
 
-      <div class="hero-eyebrow">
-        VEHICLE INTELLIGENCE ENGINE
-      </div>
+    <div class="hero-bottom" data-reveal="fade-up" data-delay="4">
+      <span>AI REAL ESTATE / VEHICLE</span>
+    </div>
+  </section>
 
-      <div class="hero-title">
-
-        <h1>
-
-          READ ANY<br>
-
-          <span>VEHICLE.</span>
-
-        </h1>
-
-      </div>
-
-      <div class="hero-subtitle">
-        Global vehicle database · Live specifications · AI analysis
-      </div>
-
-      <div class="hero-bottom">
-        AI.RE / VEHICLE INTELLIGENCE
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         SEARCH
-         =================================================== -->
-
-    <section class="search-section">
+  <!-- =====================================================
+       SEARCH
+       ===================================================== -->
+  <section class="search-section">
+    <div class="search-inner">
 
       <div class="section-head">
-
-        <h2 class="section-title">
+        <h2 class="section-title" data-reveal="fade-up">
           CHOOSE ANY<br>
           <span>VEHICLE.</span>
         </h2>
-
-        <p class="section-desc">
+        <p class="section-desc" data-reveal="fade-up" data-delay="1">
           Pick a brand, year and model — our engine
           pulls live specifications from global databases.
         </p>
-
       </div>
 
-
-      <div class="search-panel">
+      <div class="search-panel" data-reveal="fade-up" data-delay="2">
 
         <div class="search-grid">
 
@@ -189,763 +113,187 @@
 
         </div>
 
-
-        <button
-          class="analyze-btn"
-          id="analyzeBtn"
-          disabled
-        >
+        <button class="analyze-btn" id="analyzeBtn" disabled>
           <span>Analyze vehicle</span>
           <b>→</b>
         </button>
 
       </div>
 
-    </section>
-
-
-
-    <!-- ===================================================
-         RESULT
-         =================================================== -->
-
-    <section class="result-section" id="result">
-
-      <div class="result-grid">
-
-        <div class="result-visual">
-
-          <div class="visual-frame">
-
-            <img
-              id="carImage"
-              src=""
-              alt="Vehicle"
-            >
-
-            <div class="visual-placeholder" id="visualPlaceholder">
-              <span>NO IMAGE YET</span>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="result-info">
-
-          <h2 class="result-title" id="carTitle">
-            —
-          </h2>
-
-          <p class="result-sub" id="carSub">
-            Waiting for analysis
-          </p>
-
-
-          <div class="specs-grid">
-
-            <div class="spec">
-              <small>MAKE</small>
-              <strong id="specMake">—</strong>
-            </div>
-
-            <div class="spec">
-              <small>MODEL</small>
-              <strong id="specModel">—</strong>
-            </div>
-
-            <div class="spec">
-              <small>YEAR</small>
-              <strong id="specYear">—</strong>
-            </div>
-
-            <div class="spec">
-              <small>BODY</small>
-              <strong id="specBody">—</strong>
-            </div>
-
-            <div class="spec">
-              <small>ENGINE</small>
-              <strong id="specEngine">—</strong>
-            </div>
-
-            <div class="spec">
-              <small>POWER</small>
-              <strong id="specPower">—</strong>
-            </div>
-
-            <div class="spec">
-              <small>TORQUE</small>
-              <strong id="specTorque">—</strong>
-            </div>
-
-            <div class="spec">
-              <small>FUEL</small>
-              <strong id="specFuel">—</strong>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         ANALYSIS — DARK
-         =================================================== -->
-
-    <section class="analysis-section">
-
-      <div class="analysis-header">
-        <span>VEHICLE INTELLIGENCE ENGINE</span>
-      </div>
-
-      <div class="analysis-content">
-
-        <div class="analysis-copy">
-
-          <span class="mini-label">WHAT THE SYSTEM READS</span>
-
-          <h2>
-            DATA<br>
-            BECOMES<br>
-            <span>INSIGHT.</span>
-          </h2>
-
-          <p>
-            Every vehicle carries a story — from engine
-            architecture to body class. The intelligence
-            layer reads it, organizes it and presents
-            a clear picture.
-          </p>
-
-        </div>
-
-
-        <div class="intelligence-panel">
-
-          <div class="panel-top">
-            <span>ANALYSIS LAYER</span>
-            <i></i>
-          </div>
-
-          <div class="signal">
-            <div class="signal-name">
-              <span>IDENTITY</span>
-              <strong>READY</strong>
-            </div>
-            <div class="signal-bar"><i></i></div>
-          </div>
-
-          <div class="signal">
-            <div class="signal-name">
-              <span>POWERTRAIN</span>
-              <strong>READY</strong>
-            </div>
-            <div class="signal-bar"><i></i></div>
-          </div>
-
-          <div class="signal">
-            <div class="signal-name">
-              <span>STRUCTURE</span>
-              <strong>READY</strong>
-            </div>
-            <div class="signal-bar"><i></i></div>
-          </div>
-
-          <div class="signal">
-            <div class="signal-name">
-              <span>SAFETY</span>
-              <strong>ANALYZING</strong>
-            </div>
-            <div class="signal-bar"><i></i></div>
-          </div>
-
-          <div class="panel-footer">
-            <span>DATA CONFIDENCE</span>
-            <strong>98.2%</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         FINAL
-         =================================================== -->
-
-    <section class="final-section">
-
-      <div class="final-glow"></div>
-
-      <div class="final-content">
-
-        <span class="final-label">VEHICLE INTELLIGENCE</span>
-
-        <h2>
-          READ MORE.<br>
-          <span>DECIDE BETTER.</span>
-        </h2>
-
-        <p>
-          Every vehicle. Every specification. One engine.
-        </p>
-
-        <a href="../index.html" class="return-button">
-          <span>RETURN TO AI REAL ESTATE</span>
-          <b>→</b>
-        </a>
-
-      </div>
-
-      <div class="final-footer">
-        <span>AI.RE</span>
-        <span>VEHICLE INTELLIGENCE</span>
-      </div>
-
-    </section>
-
-
-  </main>
-
-
+    </div>
+  </section>
 
   <!-- =====================================================
-       SCRIPT
+       RESULT
        ===================================================== -->
-
-  <script>
-
-  (function () {
-
-    "use strict";
-
-
-    /* =====================================================
-       LOADER
-       ===================================================== */
-
-    const loader = document.getElementById("loader");
-    const loaderProgress = document.getElementById("loaderProgress");
-
-    window.addEventListener("load", () => {
-      if (loaderProgress) loaderProgress.style.width = "100%";
-      setTimeout(() => {
-        if (loader) loader.classList.add("hidden");
-      }, 500);
-    });
-
-
-    /* =====================================================
-       NAVBAR — hide down, show at top or scroll up
-       ===================================================== */
-
-    const navbar = document.getElementById("navbar");
-    let lastY = 0;
-    let hidden = false;
-
-    window.addEventListener("scroll", () => {
-
-      const y = window.scrollY || window.pageYOffset;
-
-      if (y < 40) {
-        if (hidden) {
-          navbar.classList.remove("nav-hidden");
-          hidden = false;
-        }
-        lastY = y;
-        return;
-      }
-
-      if (y > lastY + 6 && !hidden) {
-        navbar.classList.add("nav-hidden");
-        hidden = true;
-      }
-
-      if (y < lastY - 6 && hidden) {
-        navbar.classList.remove("nav-hidden");
-        hidden = false;
-      }
-
-      lastY = y;
-
-    }, { passive: true });
-
-
-    /* =====================================================
-       SIGNAL BARS REVEAL
-       ===================================================== */
-
-    const signals = document.querySelectorAll(".signal");
-
-    if (signals.length && "IntersectionObserver" in window) {
-
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal");
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-
-      signals.forEach((el) => io.observe(el));
-
-    }
-
-
-    /* =====================================================
-       API
-       ===================================================== */
-
-    const NHTSA = "https://vpic.nhtsa.dot.gov/api/vehicles";
-
-
-    /* =====================================================
-       DOM
-       ===================================================== */
-
-    const brandSelect = document.getElementById("brandSelect");
-    const yearSelect  = document.getElementById("yearSelect");
-    const modelSelect = document.getElementById("modelSelect");
-    const analyzeBtn  = document.getElementById("analyzeBtn");
-
-    const carImage          = document.getElementById("carImage");
-    const visualPlaceholder = document.getElementById("visualPlaceholder");
-    const carTitle          = document.getElementById("carTitle");
-    const carSub            = document.getElementById("carSub");
-
-    const specMake   = document.getElementById("specMake");
-    const specModel  = document.getElementById("specModel");
-    const specYear   = document.getElementById("specYear");
-    const specBody   = document.getElementById("specBody");
-    const specEngine = document.getElementById("specEngine");
-    const specPower  = document.getElementById("specPower");
-    const specTorque = document.getElementById("specTorque");
-    const specFuel   = document.getElementById("specFuel");
-
-
-    /* =====================================================
-       YEARS
-       ===================================================== */
-
-    const CURRENT_YEAR = new Date().getFullYear();
-
-    for (let y = CURRENT_YEAR; y >= 1990; y--) {
-      const opt = document.createElement("option");
-      opt.value = y;
-      opt.textContent = y;
-      yearSelect.appendChild(opt);
-    }
-
-
-    /* =====================================================
-       BRANDS
-       ===================================================== */
-
-    async function loadBrands() {
-
-      try {
-
-        const res = await fetch(
-          `${NHTSA}/GetMakesForVehicleType/car?format=json`
-        );
-
-        const data = await res.json();
-
-        const brands = data.Results
-          .map(b => b.MakeName)
-          .filter((v, i, a) => a.indexOf(v) === i)
-          .sort();
-
-        brandSelect.innerHTML = '<option value="">Select brand</option>';
-
-        brands.forEach((b) => {
-          const opt = document.createElement("option");
-          opt.value = b;
-          opt.textContent = b;
-          brandSelect.appendChild(opt);
-        });
-
-      } catch (e) {
-
-        console.error("Brands error:", e);
-
-        brandSelect.innerHTML =
-          '<option value="">Brands unavailable</option>';
-
-      }
-
-    }
-
-
-    /* =====================================================
-       MODELS
-       ===================================================== */
-
-    async function loadModels(brand, year) {
-
-      modelSelect.innerHTML =
-        '<option value="">Loading models…</option>';
-      modelSelect.disabled = true;
-
-      try {
-
-        const res = await fetch(
-          `${NHTSA}/GetModelsForMakeYear/make/${encodeURIComponent(brand)}/modelyear/${year}?format=json`
-        );
-
-        const data = await res.json();
-
-        const models = data.Results
-          .map(m => m.Model_Name)
-          .filter((v, i, a) => a.indexOf(v) === i)
-          .sort();
-
-        modelSelect.innerHTML =
-          '<option value="">Select model</option>';
-
-        models.forEach((m) => {
-          const opt = document.createElement("option");
-          opt.value = m;
-          opt.textContent = m;
-          modelSelect.appendChild(opt);
-        });
-
-        modelSelect.disabled = false;
-
-      } catch (e) {
-
-        console.error("Models error:", e);
-
-        modelSelect.innerHTML =
-          '<option value="">Models unavailable</option>';
-
-      }
-
-    }
-
-
-    /* =====================================================
-       CarQuery — multi-proxy
-       ===================================================== */
-
-    async function carQueryFetch(query) {
-
-      const target = "https://www.carqueryapi.com/api/0.3/?" + query;
-
-      const proxies = [
-        "https://corsproxy.io/?url=" + encodeURIComponent(target),
-        "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(target),
-        "https://api.allorigins.win/get?url=" + encodeURIComponent(target)
-      ];
-
-      for (const url of proxies) {
-
-        try {
-
-          const res = await fetch(url);
-          if (!res.ok) continue;
-
-          const text = await res.text();
-
-          let json;
-          try {
-            const wrapper = JSON.parse(text);
-            json = wrapper.contents ? JSON.parse(wrapper.contents) : wrapper;
-          } catch (e) {
-            continue;
-          }
-
-          if (json && json.Trims) return json;
-
-        } catch (e) {
-          continue;
-        }
-
-      }
-
-      return null;
-
-    }
-
-
-    /* =====================================================
-       SPECS
-       ===================================================== */
-
-    async function fetchSpecs(brand, year, model) {
-
-      let specs = {
-        make:   brand,
-        model:  model,
-        year:   year,
-        body:   "—",
-        engine: "—",
-        power:  "—",
-        torque: "—",
-        fuel:   "—"
-      };
-
-
-      /* ── 1. NHTSA: body type ── */
-
-      try {
-
-        const res = await fetch(
-          `${NHTSA}/GetModelsForMakeYear/make/${encodeURIComponent(brand)}/modelyear/${year}?format=json`
-        );
-
-        const data = await res.json();
-
-        const found = data.Results.find(
-          r => r.Model_Name.toLowerCase() === model.toLowerCase()
-        );
-
-        if (found && found.VehicleTypeName && found.VehicleTypeName.trim()) {
-          specs.body = found.VehicleTypeName;
-        }
-
-      } catch (e) { /* silent */ }
-
-
-      /* ── 2. CarQuery ── */
-
-      const brandQ = brand.toLowerCase().replace(/\s+/g, "_");
-      const modelQ = model.toLowerCase().replace(/\s+/g, "_");
-
-      const cq = await carQueryFetch(
-        `cmd=getTrims&make=${encodeURIComponent(brandQ)}&year=${year}&model=${encodeURIComponent(modelQ)}`
-      );
-
-      if (cq && cq.Trims && cq.Trims.length > 0) {
-
-        const trim = cq.Trims[0];
-
-        if (trim.model_engine_cc) {
-          const cc = parseInt(trim.model_engine_cc);
-          if (cc > 0) specs.engine = (cc / 1000).toFixed(1) + "L";
-        }
-
-        if (trim.model_engine_cyl) {
-          specs.engine = specs.engine === "—"
-            ? trim.model_engine_cyl + " cyl"
-            : specs.engine + " · " + trim.model_engine_cyl + " cyl";
-        }
-
-        if (trim.model_engine_power_ps && parseFloat(trim.model_engine_power_ps) > 0) {
-          specs.power = Math.round(trim.model_engine_power_ps) + " hp";
-        }
-
-        if (trim.model_engine_torque_nm && parseFloat(trim.model_engine_torque_nm) > 0) {
-          specs.torque = Math.round(trim.model_engine_torque_nm) + " Nm";
-        }
-
-        if (trim.model_engine_fuel) {
-          specs.fuel = trim.model_engine_fuel;
-        } else if (trim.model_engine_type) {
-          specs.fuel = trim.model_engine_type;
-        }
-
-        if (trim.model_body && specs.body === "—") {
-          specs.body = trim.model_body;
-        }
-
-      }
-
-
-      /* ── 3. fallback ── */
-
-      if (specs.engine === "—" && specs.power === "—") {
-        specs.engine = "Standard";
-        specs.fuel   = specs.fuel === "—" ? "Petrol" : specs.fuel;
-      }
-
-
-      return specs;
-
-    }
-
-
-    /* =====================================================
-       IMAGE — Wikipedia
-       ===================================================== */
-
-    async function fetchWikipediaImage(brand, model) {
-
-      try {
-
-        const search = encodeURIComponent(`${brand} ${model}`);
-
-        const direct =
-          "https://en.wikipedia.org/w/api.php" +
-          "?action=query&format=json&origin=*" +
-          "&prop=pageimages&piprop=original&redirects=1" +
-          "&titles=" + search;
-
-        const r1 = await fetch(direct);
-        const d1 = await r1.json();
-        const p1 = Object.values(d1.query.pages)[0];
-
-        if (p1 && p1.original && p1.original.source) {
-          return p1.original.source;
-        }
-
-        const open =
-          "https://en.wikipedia.org/w/api.php" +
-          "?action=opensearch&format=json&origin=*" +
-          "&search=" + search + "&limit=1";
-
-        const r2 = await fetch(open);
-        const d2 = await r2.json();
-
-        if (d2[1] && d2[1].length) {
-
-          const title = encodeURIComponent(d2[1][0]);
-
-          const page =
-            "https://en.wikipedia.org/w/api.php" +
-            "?action=query&format=json&origin=*" +
-            "&prop=pageimages&piprop=original" +
-            "&titles=" + title;
-
-          const r3 = await fetch(page);
-          const d3 = await r3.json();
-          const p3 = Object.values(d3.query.pages)[0];
-
-          if (p3 && p3.original && p3.original.source) {
-            return p3.original.source;
-          }
-
-        }
-
-        return null;
-
-      } catch (e) {
-        console.error("Image error:", e);
-        return null;
-      }
-
-    }
-
-
-    /* =====================================================
-       RENDER
-       ===================================================== */
-
-    async function renderResult(brand, year, model) {
-
-      carTitle.textContent = `${brand} ${model}`;
-      carSub.textContent   = `${year} · Global specification`;
-
-
-      const specs = await fetchSpecs(brand, year, model);
-
-      specMake.textContent   = specs.make   || "—";
-      specModel.textContent  = specs.model  || "—";
-      specYear.textContent   = specs.year   || "—";
-      specBody.textContent   = specs.body   || "—";
-      specEngine.textContent = specs.engine || "—";
-      specPower.textContent  = specs.power  || "—";
-      specTorque.textContent = specs.torque || "—";
-      specFuel.textContent   = specs.fuel   || "—";
-
-
-      carImage.style.display = "none";
-      visualPlaceholder.style.display = "flex";
-
-      const img = await fetchWikipediaImage(brand, model);
-
-      if (img) {
-        carImage.onload = () => {
-          carImage.style.display = "block";
-          visualPlaceholder.style.display = "none";
-        };
-        carImage.src = img;
-      }
-
-
-      document.getElementById("result").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }
-
-
-    /* =====================================================
-       EVENTS
-       ===================================================== */
-
-    brandSelect.addEventListener("change", () => {
-
-      const brand = brandSelect.value;
-      const year  = yearSelect.value;
-
-      modelSelect.innerHTML = '<option value="">Select brand & year</option>';
-      modelSelect.disabled = true;
-      analyzeBtn.disabled = true;
-
-      if (brand && year) loadModels(brand, year);
-
-    });
-
-    yearSelect.addEventListener("change", () => {
-
-      const brand = brandSelect.value;
-      const year  = yearSelect.value;
-
-      modelSelect.innerHTML = '<option value="">Select brand & year</option>';
-      modelSelect.disabled = true;
-      analyzeBtn.disabled = true;
-
-      if (brand && year) loadModels(brand, year);
-
-    });
-
-    modelSelect.addEventListener("change", () => {
-      analyzeBtn.disabled = !modelSelect.value;
-    });
-
-    analyzeBtn.addEventListener("click", async () => {
-
-      const brand = brandSelect.value;
-      const year  = yearSelect.value;
-      const model = modelSelect.value;
-
-      if (!brand || !year || !model) return;
-
-      analyzeBtn.disabled = true;
-      analyzeBtn.querySelector("span").textContent = "Analyzing…";
-
-      await renderResult(brand, year, model);
-
-      analyzeBtn.disabled = false;
-      analyzeBtn.querySelector("span").textContent = "Analyze vehicle";
-
-    });
-
-
-    /* =====================================================
-       INIT
-       ===================================================== */
-
-    loadBrands();
-
-  })();
-
-  </script>
-
-
+  <section class="result-section" id="result">
+    <div class="result-grid">
+
+      <div class="result-visual" data-reveal="fade-up">
+        <div class="visual-frame">
+          <img id="carImage" src="" alt="Vehicle">
+          <div class="visual-placeholder" id="visualPlaceholder">
+            <span>NO IMAGE YET</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-info" data-reveal="fade-up" data-delay="1">
+
+        <h2 class="result-title" id="carTitle">—</h2>
+
+        <p class="result-sub" id="carSub">Waiting for analysis</p>
+
+        <div class="specs-grid">
+
+          <div class="spec">
+            <small>MAKE</small>
+            <strong id="specMake">—</strong>
+          </div>
+
+          <div class="spec">
+            <small>MODEL</small>
+            <strong id="specModel">—</strong>
+          </div>
+
+          <div class="spec">
+            <small>YEAR</small>
+            <strong id="specYear">—</strong>
+          </div>
+
+          <div class="spec">
+            <small>BODY</small>
+            <strong id="specBody">—</strong>
+          </div>
+
+          <div class="spec">
+            <small>ENGINE</small>
+            <strong id="specEngine">—</strong>
+          </div>
+
+          <div class="spec">
+            <small>POWER</small>
+            <strong id="specPower">—</strong>
+          </div>
+
+          <div class="spec">
+            <small>TORQUE</small>
+            <strong id="specTorque">—</strong>
+          </div>
+
+          <div class="spec">
+            <small>FUEL</small>
+            <strong id="specFuel">—</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       ANALYSIS — DARK
+       ===================================================== -->
+  <section class="analysis-section">
+    <div class="analysis-orb"></div>
+
+    <div class="analysis-header" data-reveal="fade-up">
+      <span>VEHICLE INTELLIGENCE ENGINE</span>
+    </div>
+
+    <div class="analysis-content">
+      <div class="analysis-copy">
+        <span class="mini-label" data-reveal="fade-up">WHAT THE SYSTEM READS</span>
+        <h2 data-reveal="fade-up" data-delay="1">
+          DATA<br>
+          BECOMES<br>
+          <span>INSIGHT.</span>
+        </h2>
+        <p data-reveal="fade-up" data-delay="2">
+          Every vehicle carries a story — from engine
+          architecture to body class. The intelligence
+          layer reads it, organizes it and presents a
+          clear picture.
+        </p>
+      </div>
+
+      <div class="intelligence-panel" data-reveal="fade-left" data-delay="2">
+        <div class="panel-top">
+          <span>ANALYSIS LAYER</span>
+          <i></i>
+        </div>
+
+        <div class="signal">
+          <div class="signal-name">
+            <span>IDENTITY</span>
+            <strong>READY</strong>
+          </div>
+          <div class="signal-bar"><i style="width:96%"></i></div>
+        </div>
+
+        <div class="signal">
+          <div class="signal-name">
+            <span>POWERTRAIN</span>
+            <strong>READY</strong>
+          </div>
+          <div class="signal-bar"><i style="width:88%"></i></div>
+        </div>
+
+        <div class="signal">
+          <div class="signal-name">
+            <span>STRUCTURE</span>
+            <strong>READY</strong>
+          </div>
+          <div class="signal-bar"><i style="width:82%"></i></div>
+        </div>
+
+        <div class="signal">
+          <div class="signal-name">
+            <span>SAFETY</span>
+            <strong>ANALYZING</strong>
+          </div>
+          <div class="signal-bar"><i style="width:74%"></i></div>
+        </div>
+
+        <div class="panel-footer">
+          <span>DATA CONFIDENCE</span>
+          <strong>98.2%</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FINAL
+       ===================================================== -->
+  <section class="final-section">
+    <div class="final-glow"></div>
+
+    <div class="final-content">
+      <span class="final-label" data-reveal="fade-up">VEHICLE INTELLIGENCE</span>
+      <h2 data-reveal="fade-up" data-delay="1">
+        READ MORE.<br>
+        <span>DECIDE BETTER.</span>
+      </h2>
+      <p data-reveal="fade-up" data-delay="2">
+        Every vehicle. Every specification. One engine.
+      </p>
+      <a href="../index.html" class="return-button" data-reveal="fade-up" data-delay="3">
+        <span>RETURN TO AI REAL ESTATE</span>
+        <b>→</b>
+      </a>
+    </div>
+
+    <div class="final-footer">
+      <span>AI.RE</span>
+      <span>VEHICLE INTELLIGENCE</span>
+    </div>
+  </section>
+
+</main>
+
+<script src="vehicle.js"></script>
 </body>
-
-      </html>
+</html>
