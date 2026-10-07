@@ -395,10 +395,17 @@
 
 
     <!-- ===================================================
-         ACT 04 — MATCH (WHITE)
+         ACT 04 — EVERY CAR, DECODED (WHITE)
+         CLICK → car-analyzer/index.html
          =================================================== -->
 
-    <section class="story-section">
+    <section
+      class="story-section car-entry"
+      onclick="window.location.href='car-analyzer/index.html'"
+      role="link"
+      tabindex="0"
+      aria-label="Analyze Vehicle Intelligence"
+    >
 
       <div class="story-content">
 
@@ -409,10 +416,10 @@
 
         <h2>
 
-          FIND THE<br>
+          EVERY CAR,<br>
 
           <span>
-            RIGHT PROPERTY.
+            DECODED.
           </span>
 
         </h2>
@@ -444,6 +451,19 @@
           <div class="match-status">
             PERFECT MATCH
           </div>
+
+        </div>
+
+
+        <div class="property-enter">
+
+          <span>
+            ANALYZE ANY VEHICLE
+          </span>
+
+          <b>
+            →
+          </b>
 
         </div>
 
@@ -652,10 +672,10 @@
     })();
 
 
-    /* ─── KEYBOARD: property + vehicle entry ─── */
+    /* ─── KEYBOARD: property + vehicle + car entry ─── */
 
     document
-      .querySelectorAll('.property-entry, .vehicle-entry')
+      .querySelectorAll('.property-entry, .vehicle-entry, .car-entry')
       .forEach(function(el) {
 
         el.addEventListener('keydown', function(event) {
