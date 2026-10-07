@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="AI Real Estate — Intelligent Property Experience"
+  >
+
+  <meta name="theme-color" content="#f4f4f2">
+
+  <title>AI Real Estate — Intelligence in Motion</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       PRELOADER
+       ===================================================== -->
+
+  <div id="loader">
+
+    <div class="loader-inner">
+
+      <div class="loader-logo">
+        AI.RE
+      </div>
+
+      <div class="loader-line">
+        <span id="loaderProgress"></span>
+      </div>
+
+      <div class="loader-status">
+        INITIALIZING INTELLIGENCE
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       NAVBAR
+       ===================================================== -->
+
+  <header class="navbar" id="navbar">
+
+    <div class="nav-left"></div>
+
+    <div class="brand">
+      <span>AI</span>
+      <strong>REAL ESTATE</strong>
+    </div>
+
+    <div class="nav-right">
+
+      <span class="nav-status">
+        <i></i>
+        AI ONLINE
+      </span>
+
+      <button class="menu-button" aria-label="Menu">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       MAIN EXPERIENCE
+       ===================================================== -->
+
+  <main id="experience">
+
+
+    <!-- ===================================================
+         ACT 01 — HERO
+         =================================================== -->
+
+    <section class="hero">
+
+
+      <div class="hero-eyebrow">
+        AI PROPERTY INTELLIGENCE
+      </div>
+
+
+      <!-- ⚡ دکمه مستقل، بالای عنوان، زیر eyebrow -->
+      <button
+        class="hero-button"
+        id="exploreButton"
+      >
+
+        <span>
+          Explore intelligence
+        </span>
+
+        <b>
+          →
+        </b>
+
+      </button>
+
+
+      <!-- ⚡ عنوان وسط صفحه، پشت ماشین -->
+      <div class="hero-title">
+
+        <h1>
+
+          THE FUTURE<br>
+
+          OF PROPERTY<br>
+
+          <span>IS INTELLIGENT.</span>
+
+        </h1>
+
+        <p>
+
+          AI-powered real estate intelligence<br>
+
+          built for the next move.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- ⚡ ماشین جلوی متن -->
+      <div id="scene-container">
+
+        <canvas id="carCanvas"></canvas>
+
+        <div class="car-shadow"></div>
+
+      </div>
+
+
+
+      <!-- LEFT HUD -->
+
+      <div class="hud hud-left">
+
+        <div class="hud-label">
+
+          PROPERTY
+          <br>
+          INTELLIGENCE
+
+        </div>
+
+
+        <div class="hud-item">
+
+          <span>
+            MARKET SIGNAL
+          </span>
+
+          <strong>
+            +82%
+          </strong>
+
+        </div>
+
+
+        <div class="hud-item">
+
+          <span>
+            AI CONFIDENCE
+          </span>
+
+          <strong>
+            94.7%
+          </strong>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- RIGHT HUD — بدون REAL-TIME ANALYSIS label -->
+
+      <div class="hud hud-right">
+
+        <div class="analysis-line">
+
+          <i></i>
+
+          MARKET
+
+          <span>
+            ACTIVE
+          </span>
+
+        </div>
+
+
+        <div class="analysis-line">
+
+          <i></i>
+
+          LOCATION
+
+          <span>
+            READY
+          </span>
+
+        </div>
+
+
+        <div class="analysis-line">
+
+          <i></i>
+
+          MATCHING
+
+          <span>
+            ONLINE
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- SIDE COPY — فقط چپ، راست حذف شد -->
+
+      <div class="side-copy side-copy-left">
+        READ
+      </div>
+
+
+
+      <!-- SCROLL INDICATOR — بدون experience-progress -->
+
+      <div class="scroll-indicator">
+
+        <span>
+          SCROLL TO EXPLORE
+        </span>
+
+
+        <div class="scroll-line">
+
+          <div></div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ACT 02 — PROPERTY
+         CLICK → property/index.html
+         =================================================== -->
+
+    <section
+      class="story-section property-entry"
+      onclick="window.location.href='property/index.html'"
+      role="link"
+      tabindex="0"
+      aria-label="Explore Property Intelligence"
+    >
+
+      <div class="story-content">
+
+        <span class="story-number">
+          02 / PROPERTY
+        </span>
+
+
+        <h2>
+
+          PROPERTY,<br>
+
+          <span>
+            FULLY READ.
+          </span>
+
+        </h2>
+
+
+        <p>
+
+          Discover how AI transforms property
+          information into actionable intelligence.
+
+        </p>
+
+
+        <div class="property-enter">
+
+          <span>
+            EXPLORE PROPERTY INTELLIGENCE
+          </span>
+
+          <b>
+            →
+          </b>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ACT 03 — VEHICLE (DARK)
+         CLICK → chat-car.html
+         =================================================== -->
+
+    <section
+      class="story-section dark-section vehicle-entry"
+      onclick="window.location.href='chat-car.html'"
+      role="link"
+      tabindex="0"
+      aria-label="Explore Vehicle Intelligence"
+    >
+
+      <div class="story-content">
+
+        <span class="story-number">
+          03 / VEHICLE
+        </span>
+
+
+        <h2>
+
+          VEHICLES,<br>
+
+          <span>
+            FULLY READ.
+          </span>
+
+        </h2>
+
+
+        <p>
+
+          From engine history to real-time market
+          value — every detail decoded by AI.
+
+        </p>
+
+
+        <div class="property-enter">
+
+          <span>
+            EXPLORE VEHICLE INTELLIGENCE
+          </span>
+
+          <b>
+            →
+          </b>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ACT 04 — MATCH (WHITE)
+         =================================================== -->
+
+    <section class="story-section">
+
+      <div class="story-content">
+
+        <span class="story-number">
+          04 / MATCH
+        </span>
+
+
+        <h2>
+
+          FIND THE<br>
+
+          <span>
+            RIGHT PROPERTY.
+          </span>
+
+        </h2>
+
+
+        <p>
+
+          AI matches your intent with market data
+          to surface what actually fits.
+
+        </p>
+
+
+        <div class="match-card">
+
+          <div>
+
+            <small>
+              AI MATCH
+            </small>
+
+            <strong>
+              97%
+            </strong>
+
+          </div>
+
+
+          <div class="match-status">
+            PERFECT MATCH
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ACT 05 — DECISION (DARK)
+         =================================================== -->
+
+    <section class="story-section dark-section">
+
+      <div class="story-content">
+
+        <span class="story-number">
+          05 / DECISION
+        </span>
+
+
+        <h2>
+
+          DATA BECOMES<br>
+
+          <span>
+            DECISION.
+          </span>
+
+        </h2>
+
+
+        <p>
+
+          From market intelligence
+          to human decisions.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         ACT 06 — AGENT
+         =================================================== -->
+
+    <section class="agent-section">
+
+      <div class="agent-glow"></div>
+
+
+      <div class="agent-content">
+
+        <div class="agent-status">
+
+          <i></i>
+
+          AI REAL ESTATE AGENT
+
+        </div>
+
+
+        <h2>
+
+          YOUR NEXT<br>
+
+          <span>
+            MOVE.
+          </span>
+
+        </h2>
+
+
+        <p>
+
+          Talk to your intelligent
+          real estate advisor.
+
+        </p>
+
+
+        <button
+          class="agent-button"
+          type="button"
+        >
+
+          Start conversation
+
+          <span>
+            →
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       THREE.JS IMPORT MAP
+       ===================================================== -->
+
+  <script type="importmap">
+
+  {
+    "imports": {
+
+      "three":
+        "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+
+      "three/addons/":
+        "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+
+    }
+  }
+
+  </script>
+
+
+
+  <!-- =====================================================
+       MAIN JAVASCRIPT
+       ===================================================== -->
+
+  <script
+    type="module"
+    src="main.js"
+  ></script>
+
+
+
+  <!-- =====================================================
+       NAVBAR BEHAVIOR + ACCESSIBILITY
+       ===================================================== -->
+
+  <script>
+
+    /* ─── NAVBAR: hide on scroll down, show only at top ─── */
+
+    (function() {
+
+      const navbar = document.getElementById('navbar');
+
+      if (!navbar) return;
+
+      let lastY = 0;
+
+      let hidden = false;
+
+      const THRESHOLD_TOP = 40;
+
+      const SCROLL_DELTA = 6;
+
+
+      function onScroll() {
+
+        const y = window.scrollY || window.pageYOffset;
+
+
+        if (y < THRESHOLD_TOP) {
+
+          if (hidden) {
+
+            navbar.classList.remove('nav-hidden');
+
+            hidden = false;
+
+          }
+
+          lastY = y;
+
+          return;
+
+        }
+
+
+        if (y > lastY + SCROLL_DELTA) {
+
+          if (!hidden) {
+
+            navbar.classList.add('nav-hidden');
+
+            hidden = true;
+
+          }
+
+        }
+
+
+        lastY = y;
+
+      }
+
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+    })();
+
+
+    /* ─── KEYBOARD: property + vehicle entry ─── */
+
+    document
+      .querySelectorAll('.property-entry, .vehicle-entry')
+      .forEach(function(el) {
+
+        el.addEventListener('keydown', function(event) {
+
+          if (event.key === 'Enter' || event.key === ' ') {
+
+            event.preventDefault();
+
+            el.click();
+
+          }
+
+        });
+
+      });
+
+  </script>
+
+
+</body>
+
+          </html>
