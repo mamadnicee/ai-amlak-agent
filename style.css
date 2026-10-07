@@ -118,7 +118,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   position: relative;
   height: 100vh;
   height: 100svh;
-  min-height: unset;
+  min-height: 680px;
   overflow: hidden;
   isolation: isolate;
 }
@@ -144,12 +144,12 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   EYEBROW — بالای صفحه، ثابت
+   EYEBROW — بالای صفحه، زیر navbar
    ========================================================= */
 
 .hero-eyebrow {
   position: absolute;
-  top: 115px;
+  top: 112px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 8px;
@@ -163,12 +163,12 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   SUBTITLE — دقیقاً زیر eyebrow، بالا (بدون تداخل)
+   SUBTITLE — دقیقاً زیر eyebrow، بالای title
    ========================================================= */
 
 .hero-subtitle {
   position: absolute;
-  top: 142px;
+  top: 138px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -183,12 +183,12 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   TITLE — وسط صفحه، پشت ماشین
+   TITLE — وسط پایین‌تر، پشت ماشین
    ========================================================= */
 
 .hero-title {
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -515,6 +515,18 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
+   SHORT VIEWPORT — جلوگیری از تداخل
+   ========================================================= */
+
+@media (min-width: 769px) and (max-height: 720px) {
+  .hero-eyebrow { top: 98px; }
+  .hero-subtitle { top: 122px; }
+  .hero-title { top: 60%; }
+  .hero-title h1 { font-size: clamp(30px, 4vw, 56px); }
+}
+
+
+/* =========================================================
    MOBILE
    ========================================================= */
 
@@ -536,14 +548,14 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   .hero { height: 100svh; min-height: unset; }
 
   .hero-eyebrow {
-    top: 84px;
+    top: 82px;
     font-size: 6px;
     letter-spacing: 3px;
   }
 
-  /* عنوان موبایل: 3 خط */
+  /* عنوان موبایل */
   .hero-title {
-    top: 118px;
+    top: 108px;
     transform: translateX(-50%);
     width: 92vw;
   }
@@ -555,7 +567,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
   /* زیرنویس */
   .hero-subtitle {
-    top: 268px;
+    top: 252px;
     font-size: 10px;
     line-height: 1.6;
     white-space: normal;
@@ -563,11 +575,11 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     padding: 0 10px;
   }
 
-  /* ⚡ دکمه: دقیقاً وسط فضای خالی بین subtitle و car */
+  /* ⚡ دکمه — دقیقاً وسط فضای خالی (بالاتر از قبل) */
   .hero-button {
     display: inline-flex;
     position: absolute;
-    top: 328px;
+    top: 300px;
     left: 50%;
     transform: translateX(-50%);
     pointer-events: auto;
@@ -673,4 +685,4 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
-  }
+}
