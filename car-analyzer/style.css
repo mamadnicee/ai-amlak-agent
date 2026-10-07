@@ -28,8 +28,8 @@ body {
 }
 
 button { font: inherit; border: 0; background: none; cursor: pointer; }
-
 select { font: inherit; }
+a { color: inherit; text-decoration: none; }
 
 
 /* =========================================================
@@ -136,7 +136,7 @@ select { font: inherit; }
   position: relative;
   height: 100vh;
   height: 100svh;
-  min-height: unset;
+  min-height: 680px;
   overflow: hidden;
   isolation: isolate;
   display: flex;
@@ -181,12 +181,12 @@ select { font: inherit; }
   position: relative;
   z-index: 5;
   text-align: center;
-  width: min(900px, 92vw);
+  width: min(1000px, 92vw);
 }
 
 .hero-title h1 {
-  font-size: clamp(48px, 8vw, 130px);
-  line-height: .92;
+  font-size: clamp(48px, 7.4vw, 120px);
+  line-height: .94;
   letter-spacing: -.06em;
   font-weight: 500;
   text-transform: uppercase;
@@ -200,7 +200,7 @@ select { font: inherit; }
 
 .hero-subtitle {
   position: absolute;
-  top: calc(50% + clamp(60px, 12vw, 130px));
+  top: calc(50% + clamp(70px, 12vw, 140px));
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -223,7 +223,7 @@ select { font: inherit; }
 
 
 /* =========================================================
-   SEARCH SECTION
+   SEARCH
    ========================================================= */
 
 .search-section {
@@ -242,20 +242,20 @@ select { font: inherit; }
 .section-head {
   text-align: center;
   max-width: 700px;
-  margin-bottom: 60px;
+  margin-bottom: 56px;
 }
 
-.section-number {
+.story-number {
   display: inline-block;
   font-size: 8px;
   letter-spacing: 4px;
   color: #999;
   font-family: 'Space Grotesk', sans-serif;
-  margin-bottom: 22px;
 }
 
 .section-title {
-  font-size: clamp(40px, 5vw, 72px);
+  margin-top: 22px;
+  font-size: clamp(40px, 5vw, 76px);
   line-height: .95;
   letter-spacing: -.06em;
   font-weight: 500;
@@ -302,11 +302,7 @@ select { font: inherit; }
   margin-bottom: 28px;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.field { display: flex; flex-direction: column; gap: 10px; }
 
 .field label {
   font-size: 8px;
@@ -318,7 +314,7 @@ select { font: inherit; }
 
 .field select {
   width: 100%;
-  padding: 14px 16px;
+  padding: 14px 36px 14px 16px;
   font-size: 13px;
   color: #080808;
   background: rgba(255, 255, 255, 0.7);
@@ -337,12 +333,9 @@ select { font: inherit; }
     calc(100% - 13px) 50%;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
-  padding-right: 36px;
 }
 
-.field select:hover {
-  border-color: rgba(0, 0, 0, 0.2);
-}
+.field select:hover { border-color: rgba(0, 0, 0, 0.2); }
 
 .field select:focus {
   outline: none;
@@ -350,10 +343,7 @@ select { font: inherit; }
   box-shadow: 0 0 0 3px rgba(117, 103, 255, 0.12);
 }
 
-.field select:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
+.field select:disabled { opacity: .5; cursor: not-allowed; }
 
 .analyze-btn {
   display: inline-flex;
@@ -377,24 +367,18 @@ select { font: inherit; }
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.analyze-btn:disabled {
-  opacity: .35;
-  cursor: not-allowed;
-}
-
-.analyze-btn b {
-  font-size: 14px;
-  font-weight: 400;
-}
+.analyze-btn:disabled { opacity: .35; cursor: not-allowed; }
+.analyze-btn b { font-size: 14px; font-weight: 400; }
 
 
 /* =========================================================
-   RESULT SECTION
+   RESULT
    ========================================================= */
 
 .result-section {
   position: relative;
   min-height: 100vh;
+  height: 100vh;
   padding: var(--section-y) var(--pad-x);
   background: #f8f8f6;
   display: flex;
@@ -407,7 +391,7 @@ select { font: inherit; }
   width: 100%;
   max-width: 1200px;
   display: grid;
-  grid-template-columns: minmax(260px, 400px) 1fr;
+  grid-template-columns: minmax(260px, 420px) 1fr;
   gap: 6vw;
   align-items: center;
 }
@@ -422,6 +406,7 @@ select { font: inherit; }
 .visual-frame {
   position: relative;
   width: 100%;
+  max-height: 68vh;
   aspect-ratio: 4 / 3;
   border-radius: 24px;
   overflow: hidden;
@@ -429,17 +414,16 @@ select { font: inherit; }
   box-shadow:
     0 40px 90px rgba(0, 0, 0, 0.14),
     0 0 0 1px rgba(0, 0, 0, 0.04);
-  transition: transform .6s cubic-bezier(.22,.61,.36,1);
 }
 
 .visual-frame img {
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   filter: grayscale(100%) contrast(1.05);
   transition: filter .8s ease, transform 1.2s cubic-bezier(.22,.61,.36,1);
-  display: none;
 }
 
 .visual-frame:hover img {
@@ -468,34 +452,24 @@ select { font: inherit; }
     #111;
 }
 
-.result-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.result-number {
-  font-size: 8px;
-  letter-spacing: 4px;
-  color: #999;
-  font-family: 'Space Grotesk', sans-serif;
-  margin-bottom: 20px;
-}
+.result-info { display: flex; flex-direction: column; }
 
 .result-title {
-  font-size: clamp(38px, 4.5vw, 68px);
-  line-height: .98;
+  margin-top: 18px;
+  font-size: clamp(34px, 4.4vw, 68px);
+  line-height: .96;
   letter-spacing: -.05em;
   font-weight: 500;
   color: #080808;
   text-transform: uppercase;
-  margin-bottom: 12px;
 }
 
 .result-sub {
   color: #8a8a8a;
   font-size: 12px;
   letter-spacing: .03em;
-  margin-bottom: 36px;
+  margin-top: 12px;
+  margin-bottom: 32px;
 }
 
 
@@ -504,7 +478,6 @@ select { font: inherit; }
 .specs-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0;
   border-top: 1px solid var(--line);
 }
 
@@ -512,17 +485,18 @@ select { font: inherit; }
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 20px 0;
+  padding: 18px 0;
   border-bottom: 1px solid var(--line);
+  min-height: 72px;
 }
 
 .spec:nth-child(odd) {
-  padding-right: 20px;
+  padding-right: 18px;
   border-right: 1px solid var(--line);
 }
 
 .spec:nth-child(even) {
-  padding-left: 20px;
+  padding-left: 18px;
 }
 
 .spec small {
@@ -538,6 +512,7 @@ select { font: inherit; }
   font-weight: 500;
   color: #080808;
   letter-spacing: .01em;
+  word-break: break-word;
 }
 
 
@@ -548,6 +523,7 @@ select { font: inherit; }
 .analysis-section {
   position: relative;
   min-height: 100vh;
+  height: 100vh;
   padding: var(--section-y) var(--pad-x);
   background: #070707;
   color: #fff;
@@ -635,7 +611,7 @@ select { font: inherit; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 24px;
+  padding-bottom: 22px;
   border-bottom: 1px solid rgba(255,255,255,.08);
   color: #777;
   font-size: 7px;
@@ -657,7 +633,7 @@ select { font: inherit; }
 }
 
 .signal {
-  padding: 18px 0;
+  padding: 16px 0;
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
 
@@ -693,14 +669,12 @@ select { font: inherit; }
   transition: transform 1.4s cubic-bezier(.22,.61,.36,1);
 }
 
-.signal.reveal .signal-bar i {
-  transform: scaleX(1);
-}
+.signal.reveal .signal-bar i { transform: scaleX(1); }
 
 .panel-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: 22px;
   color: #777;
   font-size: 7px;
   letter-spacing: 3px;
@@ -722,6 +696,7 @@ select { font: inherit; }
 
 .final-section {
   min-height: 100vh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
   display: grid;
@@ -800,6 +775,18 @@ select { font: inherit; }
 
 
 /* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .result-grid {
+    grid-template-columns: minmax(240px, 340px) 1fr;
+    gap: 5vw;
+  }
+}
+
+
+/* =========================================================
    MOBILE
    ========================================================= */
 
@@ -808,7 +795,7 @@ select { font: inherit; }
   :root {
     --nav-height: 64px;
     --pad-x: 22px;
-    --section-y: 70px;
+    --section-y: 60px;
   }
 
   .navbar { padding: 0 20px; }
@@ -816,112 +803,104 @@ select { font: inherit; }
   .brand { font-size: 9px; letter-spacing: 2.5px; }
   .nav-status { display: none; }
 
-  /* HERO */
+  /* ── HERO ── */
+
+  .hero { min-height: unset; }
+
   .hero-eyebrow {
     top: 84px;
     font-size: 6px;
     letter-spacing: 3px;
   }
-  .hero-title h1 {
-    font-size: clamp(44px, 14vw, 72px);
-  }
+
+  .hero-title { width: 92vw; }
+  .hero-title h1 { font-size: clamp(44px, 13vw, 78px); line-height: .96; }
+
   .hero-subtitle {
-    top: calc(50% + clamp(50px, 14vw, 90px));
+    top: calc(50% + clamp(60px, 16vw, 100px));
     font-size: 9px;
-    letter-spacing: .02em;
+    white-space: normal;
+    max-width: 90vw;
+    padding: 0 12px;
+    line-height: 1.6;
   }
+
   .hero-bottom {
-    left: 22px;
     bottom: 22px;
+    left: 22px;
     font-size: 6px;
   }
 
-  /* SEARCH */
+  /* ── SEARCH ── */
+
   .search-section {
-    min-height: auto;
-    height: auto;
     padding: var(--section-y) 22px;
   }
-  .section-head { margin-bottom: 40px; }
-  .section-number { font-size: 7px; margin-bottom: 16px; }
-  .section-title { font-size: clamp(32px, 10vw, 48px); }
+
+  .section-head { margin-bottom: 36px; }
+  .story-number { font-size: 7px; letter-spacing: 3px; }
+  .section-title {
+    font-size: clamp(32px, 10vw, 50px);
+    margin-top: 16px;
+  }
   .section-desc { font-size: 11px; margin-top: 16px; }
 
-  .search-panel {
-    padding: 26px 22px;
-    border-radius: 22px;
-  }
+  .search-panel { padding: 26px 22px; border-radius: 22px; }
+  .search-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 22px; }
+  .field label { font-size: 7px; letter-spacing: 2.5px; }
+  .field select { padding: 13px 34px 13px 14px; font-size: 13px; }
+  .analyze-btn { padding: 15px 20px; font-size: 10px; }
 
-  .search-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-bottom: 22px;
-  }
+  /* ── RESULT ── */
 
-  .field label { font-size: 7px; }
-  .field select {
-    padding: 13px 14px;
-    font-size: 13px;
-    padding-right: 34px;
-  }
-
-  .analyze-btn {
-    padding: 15px 20px;
-    font-size: 10px;
-  }
-
-  /* RESULT */
   .result-section {
-    min-height: auto;
-    height: auto;
     padding: var(--section-y) 22px;
   }
+
   .result-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
     max-width: 100%;
   }
+
   .visual-frame {
     aspect-ratio: 4 / 3;
-    max-width: 380px;
+    max-width: 100%;
+    max-height: 48vh;
     margin: 0 auto;
   }
-  .result-title {
-    font-size: clamp(32px, 9.5vw, 48px);
-  }
-  .result-sub { font-size: 11px; margin-bottom: 26px; }
 
-  .specs-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .result-title {
+    font-size: clamp(30px, 9.5vw, 48px);
+    margin-top: 14px;
   }
-  .spec { padding: 16px 0; }
-  .spec:nth-child(odd) { padding-right: 14px; }
-  .spec:nth-child(even) { padding-left: 14px; }
-  .spec small { font-size: 6.5px; letter-spacing: 2.5px; }
+
+  .result-sub { font-size: 11px; margin-bottom: 24px; }
+
+  .specs-grid { grid-template-columns: repeat(2, 1fr); }
+  .spec { padding: 14px 0; min-height: 62px; }
+  .spec:nth-child(odd) { padding-right: 12px; }
+  .spec:nth-child(even) { padding-left: 12px; }
+  .spec small { font-size: 6px; letter-spacing: 2.5px; }
   .spec strong { font-size: 12px; }
 
-  /* ANALYSIS */
-  .analysis-section {
-    min-height: auto;
-    height: auto;
-    padding: var(--section-y) 22px;
-  }
+  /* ── ANALYSIS ── */
+
+  .analysis-section { padding: var(--section-y) 22px; }
   .analysis-header { padding-bottom: 30px; font-size: 6px; }
-  .analysis-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  .analysis-content { grid-template-columns: 1fr; gap: 40px; }
   .analysis-copy h2 { font-size: clamp(38px, 11vw, 60px); }
   .analysis-copy p { font-size: 11px; margin-top: 22px; }
   .mini-label { font-size: 6px; }
   .intelligence-panel { padding: 22px; }
-  .signal { padding: 14px 0; }
+  .signal { padding: 13px 0; }
   .signal-name { font-size: 7px; }
   .panel-footer { margin-top: 18px; }
   .panel-footer strong { font-size: 14px; }
 
-  /* FINAL */
-  .final-section { min-height: 100svh; }
+  /* ── FINAL ── */
+
+  .final-section { min-height: unset; }
   .final-content { padding: 0 22px; }
   .final-content h2 { font-size: clamp(44px, 13vw, 72px); }
   .final-content p { font-size: 11px; margin-top: 22px; }
@@ -951,4 +930,4 @@ select { font: inherit; }
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
-  }
+   }
