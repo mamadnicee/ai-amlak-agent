@@ -144,12 +144,12 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   EYEBROW — بالای صفحه، زیر navbar
+   EYEBROW + SUBTITLE — بالای صفحه، کامپکت
    ========================================================= */
 
 .hero-eyebrow {
   position: absolute;
-  top: 112px;
+  top: 108px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 8px;
@@ -161,20 +161,15 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   line-height: 1;
 }
 
-
-/* =========================================================
-   SUBTITLE — دقیقاً زیر eyebrow
-   ========================================================= */
-
 .hero-subtitle {
   position: absolute;
-  top: 138px;
+  top: 132px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   color: #8a8a8a;
   font-size: 11px;
-  line-height: 1.6;
+  line-height: 1.55;
   letter-spacing: .03em;
   white-space: nowrap;
   pointer-events: none;
