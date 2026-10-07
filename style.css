@@ -144,12 +144,13 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   EYEBROW + SUBTITLE — بالای صفحه، کامپکت
+   EYEBROW + SUBTITLE — دقیقاً زیر navbar، کامپکت
+   ⚡ فاصله جدید: ۹۶px و ۱۱۸px (بالاتر از قبل)
    ========================================================= */
 
 .hero-eyebrow {
   position: absolute;
-  top: 108px;
+  top: 96px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 8px;
@@ -163,7 +164,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 .hero-subtitle {
   position: absolute;
-  top: 132px;
+  top: 118px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -510,6 +511,29 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
+   DESKTOP — Viewport کوتاه: فشرده‌سازی
+   ⚡ برای صفحه‌های کوتاه (لپ‌تاپ‌های کم ارتفاع) 
+   ========================================================= */
+
+@media (min-width: 769px) and (max-height: 700px) {
+
+  .hero-eyebrow { top: 92px; font-size: 7px; letter-spacing: 4px; }
+  .hero-subtitle { top: 110px; font-size: 10px; line-height: 1.5; }
+  .hero-title { top: 55%; }
+  .hero-title h1 { font-size: clamp(30px, 4vw, 56px); }
+}
+
+@media (min-width: 769px) and (max-height: 600px) {
+
+  .hero-eyebrow { top: 88px; font-size: 6px; letter-spacing: 3.5px; }
+  .hero-subtitle { top: 104px; font-size: 9px; }
+  .hero-title { top: 58%; }
+  .hero-title h1 { font-size: clamp(26px, 3.4vw, 46px); }
+  .car-shadow { top: 80%; }
+}
+
+
+/* =========================================================
    MOBILE
    ========================================================= */
 
@@ -661,4 +685,4 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
-     }
+   }
