@@ -1,6 +1,5 @@
 /* =========================================================
    AI REAL ESTATE — VEHICLE INTELLIGENCE
-   Editorial / AI Interface
    ========================================================= */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,12 +36,8 @@ a { color: inherit; text-decoration: none; }
    ========================================================= */
 
 #loader {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
   background: var(--bg);
   transition: opacity .8s ease, visibility .8s ease;
 }
@@ -67,11 +62,8 @@ a { color: inherit; text-decoration: none; }
    ========================================================= */
 
 .navbar {
-  position: fixed;
-  z-index: 100;
-  top: 0; left: 0;
-  width: 100%;
-  height: var(--nav-height);
+  position: fixed; z-index: 100; top: 0; left: 0;
+  width: 100%; height: var(--nav-height);
   padding: 0 5vw;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -89,12 +81,10 @@ a { color: inherit; text-decoration: none; }
 
 .back {
   justify-self: start;
-  width: 48px;
-  height: 48px;
+  width: 48px; height: 48px;
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 50%;
-  display: grid;
-  place-items: center;
+  display: grid; place-items: center;
   background: rgba(255,255,255,.55);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -102,8 +92,7 @@ a { color: inherit; text-decoration: none; }
 }
 .back:hover { transform: translateX(-4px); background: #fff; }
 .back span {
-  width: 9px;
-  height: 9px;
+  width: 9px; height: 9px;
   border-left: 1.5px solid #000;
   border-bottom: 1.5px solid #000;
   transform: rotate(45deg);
@@ -136,7 +125,7 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   height: 100vh;
   height: 100svh;
-  min-height: 680px;
+  min-height: unset;
   overflow: hidden;
   isolation: isolate;
   display: flex;
@@ -165,7 +154,7 @@ a { color: inherit; text-decoration: none; }
 
 .hero-eyebrow {
   position: absolute;
-  top: 78px;
+  top: 84px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 8px;
@@ -200,7 +189,7 @@ a { color: inherit; text-decoration: none; }
 
 .hero-subtitle {
   position: absolute;
-  top: calc(50% + clamp(70px, 12vw, 140px));
+  top: calc(50% + clamp(80px, 13vw, 150px));
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -228,8 +217,9 @@ a { color: inherit; text-decoration: none; }
 
 .search-section {
   position: relative;
-  min-height: 100vh;
   height: 100vh;
+  height: 100svh;
+  min-height: unset;
   padding: var(--section-y) var(--pad-x);
   background: var(--bg);
   display: flex;
@@ -243,14 +233,6 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   max-width: 700px;
   margin-bottom: 56px;
-}
-
-.story-number {
-  display: inline-block;
-  font-size: 8px;
-  letter-spacing: 4px;
-  color: #999;
-  font-family: 'Space Grotesk', sans-serif;
 }
 
 .section-title {
@@ -367,18 +349,24 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.analyze-btn:disabled { opacity: .35; cursor: not-allowed; }
+.analyze-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  background: #888;
+}
+
 .analyze-btn b { font-size: 14px; font-weight: 400; }
 
 
 /* =========================================================
-   RESULT
+   RESULT — هم‌ارتفاع، دقیق
    ========================================================= */
 
 .result-section {
   position: relative;
-  min-height: 100vh;
   height: 100vh;
+  height: 100svh;
+  min-height: unset;
   padding: var(--section-y) var(--pad-x);
   background: #f8f8f6;
   display: flex;
@@ -391,7 +379,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   max-width: 1200px;
   display: grid;
-  grid-template-columns: minmax(260px, 420px) 1fr;
+  grid-template-columns: minmax(280px, 420px) 1fr;
   gap: 6vw;
   align-items: center;
 }
@@ -406,8 +394,8 @@ a { color: inherit; text-decoration: none; }
 .visual-frame {
   position: relative;
   width: 100%;
-  max-height: 68vh;
   aspect-ratio: 4 / 3;
+  max-height: 62vh;
   border-radius: 24px;
   overflow: hidden;
   background: #111;
@@ -456,7 +444,7 @@ a { color: inherit; text-decoration: none; }
 
 .result-title {
   margin-top: 18px;
-  font-size: clamp(34px, 4.4vw, 68px);
+  font-size: clamp(34px, 4.4vw, 64px);
   line-height: .96;
   letter-spacing: -.05em;
   font-weight: 500;
@@ -522,8 +510,9 @@ a { color: inherit; text-decoration: none; }
 
 .analysis-section {
   position: relative;
-  min-height: 100vh;
   height: 100vh;
+  height: 100svh;
+  min-height: unset;
   padding: var(--section-y) var(--pad-x);
   background: #070707;
   color: #fff;
@@ -553,7 +542,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 7px;
   letter-spacing: 4px;
   font-family: 'Space Grotesk', sans-serif;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
   text-align: center;
 }
 
@@ -695,8 +684,9 @@ a { color: inherit; text-decoration: none; }
    ========================================================= */
 
 .final-section {
-  min-height: 100vh;
   height: 100vh;
+  height: 100svh;
+  min-height: unset;
   position: relative;
   overflow: hidden;
   display: grid;
@@ -775,14 +765,63 @@ a { color: inherit; text-decoration: none; }
 
 
 /* =========================================================
-   TABLET
+   DESKTOP — Viewport کوتاه
    ========================================================= */
 
-@media (max-width: 1100px) {
-  .result-grid {
-    grid-template-columns: minmax(240px, 340px) 1fr;
-    gap: 5vw;
-  }
+@media (min-width: 769px) and (max-height: 750px) {
+  .hero-eyebrow { top: 78px; font-size: 7px; letter-spacing: 4px; }
+  .hero-title h1 { font-size: clamp(42px, 6.4vw, 96px); }
+  .hero-subtitle { top: calc(50% + clamp(60px, 10vw, 110px)); font-size: 10px; }
+
+  .search-section,
+  .result-section,
+  .analysis-section,
+  .final-section { padding: 80px var(--pad-x); }
+
+  .section-head { margin-bottom: 40px; }
+  .section-title { font-size: clamp(34px, 4.2vw, 60px); }
+
+  .search-panel { padding: 32px; }
+  .field select { padding: 12px 32px 12px 14px; }
+
+  .visual-frame { max-height: 55vh; }
+  .spec { padding: 14px 0; min-height: 64px; }
+
+  .analysis-header { padding-bottom: 40px; }
+  .analysis-copy h2 { font-size: clamp(42px, 5.6vw, 80px); }
+  .analysis-copy p { font-size: 11px; margin-top: 26px; }
+  .intelligence-panel { padding: 24px; }
+  .signal { padding: 13px 0; }
+
+  .final-content h2 { font-size: clamp(48px, 7.2vw, 108px); }
+}
+
+@media (min-width: 769px) and (max-height: 650px) {
+  .hero-eyebrow { top: 74px; font-size: 6px; letter-spacing: 3.5px; }
+  .hero-title h1 { font-size: clamp(36px, 5.4vw, 80px); }
+  .hero-subtitle { font-size: 9px; }
+
+  .search-section,
+  .result-section,
+  .analysis-section,
+  .final-section { padding: 60px var(--pad-x); }
+
+  .section-head { margin-bottom: 30px; }
+  .section-title { font-size: clamp(30px, 3.6vw, 50px); }
+
+  .search-panel { padding: 26px; }
+  .search-grid { gap: 16px; margin-bottom: 22px; }
+
+  .visual-frame { max-height: 48vh; }
+  .spec { padding: 12px 0; min-height: 56px; }
+  .spec strong { font-size: 12px; }
+
+  .analysis-copy h2 { font-size: clamp(36px, 4.8vw, 68px); }
+  .intelligence-panel { padding: 20px; }
+  .signal { padding: 11px 0; }
+  .signal-name { font-size: 7px; }
+
+  .final-content h2 { font-size: clamp(42px, 6vw, 90px); }
 }
 
 
@@ -833,16 +872,10 @@ a { color: inherit; text-decoration: none; }
 
   /* ── SEARCH ── */
 
-  .search-section {
-    padding: var(--section-y) 22px;
-  }
+  .search-section { padding: var(--section-y) 22px; min-height: auto; height: auto; }
 
   .section-head { margin-bottom: 36px; }
-  .story-number { font-size: 7px; letter-spacing: 3px; }
-  .section-title {
-    font-size: clamp(32px, 10vw, 50px);
-    margin-top: 16px;
-  }
+  .section-title { font-size: clamp(32px, 10vw, 50px); margin-top: 16px; }
   .section-desc { font-size: 11px; margin-top: 16px; }
 
   .search-panel { padding: 26px 22px; border-radius: 22px; }
@@ -853,9 +886,7 @@ a { color: inherit; text-decoration: none; }
 
   /* ── RESULT ── */
 
-  .result-section {
-    padding: var(--section-y) 22px;
-  }
+  .result-section { padding: var(--section-y) 22px; height: auto; min-height: auto; }
 
   .result-grid {
     grid-template-columns: 1fr;
@@ -870,11 +901,7 @@ a { color: inherit; text-decoration: none; }
     margin: 0 auto;
   }
 
-  .result-title {
-    font-size: clamp(30px, 9.5vw, 48px);
-    margin-top: 14px;
-  }
-
+  .result-title { font-size: clamp(30px, 9.5vw, 48px); margin-top: 14px; }
   .result-sub { font-size: 11px; margin-bottom: 24px; }
 
   .specs-grid { grid-template-columns: repeat(2, 1fr); }
@@ -886,7 +913,7 @@ a { color: inherit; text-decoration: none; }
 
   /* ── ANALYSIS ── */
 
-  .analysis-section { padding: var(--section-y) 22px; }
+  .analysis-section { padding: var(--section-y) 22px; height: auto; min-height: auto; }
   .analysis-header { padding-bottom: 30px; font-size: 6px; }
   .analysis-content { grid-template-columns: 1fr; gap: 40px; }
   .analysis-copy h2 { font-size: clamp(38px, 11vw, 60px); }
@@ -900,7 +927,7 @@ a { color: inherit; text-decoration: none; }
 
   /* ── FINAL ── */
 
-  .final-section { min-height: unset; }
+  .final-section { min-height: unset; height: auto; padding: 100px 0; }
   .final-content { padding: 0 22px; }
   .final-content h2 { font-size: clamp(44px, 13vw, 72px); }
   .final-content p { font-size: 11px; margin-top: 22px; }
