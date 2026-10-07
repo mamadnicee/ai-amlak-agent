@@ -118,7 +118,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   position: relative;
   height: 100vh;
   height: 100svh;
-  min-height: 680px;
+  min-height: unset;
   overflow: hidden;
   isolation: isolate;
 }
@@ -163,7 +163,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   SUBTITLE — دقیقاً زیر eyebrow، بالای title
+   SUBTITLE — دقیقاً زیر eyebrow
    ========================================================= */
 
 .hero-subtitle {
@@ -183,12 +183,12 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   TITLE — وسط پایین‌تر، پشت ماشین
+   TITLE — وسط صفحه، پشت ماشین
    ========================================================= */
 
 .hero-title {
   position: absolute;
-  top: 58%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -515,18 +515,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
 
 
 /* =========================================================
-   SHORT VIEWPORT — جلوگیری از تداخل
-   ========================================================= */
-
-@media (min-width: 769px) and (max-height: 720px) {
-  .hero-eyebrow { top: 98px; }
-  .hero-subtitle { top: 122px; }
-  .hero-title { top: 60%; }
-  .hero-title h1 { font-size: clamp(30px, 4vw, 56px); }
-}
-
-
-/* =========================================================
    MOBILE
    ========================================================= */
 
@@ -553,7 +541,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     letter-spacing: 3px;
   }
 
-  /* عنوان موبایل */
   .hero-title {
     top: 108px;
     transform: translateX(-50%);
@@ -565,7 +552,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     letter-spacing: -.05em;
   }
 
-  /* زیرنویس */
   .hero-subtitle {
     top: 252px;
     font-size: 10px;
@@ -575,7 +561,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     padding: 0 10px;
   }
 
-  /* ⚡ دکمه — دقیقاً وسط فضای خالی (بالاتر از قبل) */
   .hero-button {
     display: inline-flex;
     position: absolute;
@@ -604,8 +589,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     filter: blur(38px);
   }
 
-  /* ── HUD MOBILE ── */
-
   .hud {
     top: auto;
     bottom: 50px;
@@ -633,7 +616,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   }
   .scroll-line { width: 50px; }
 
-  /* ── STORY SECTIONS MOBILE ── */
   .story-section {
     min-height: 100vh;
     height: 100svh;
@@ -660,7 +642,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
   .match-card strong { font-size: 32px; }
   .match-status { font-size: 7px; }
 
-  /* ── AGENT MOBILE ── */
   .agent-section { height: 100svh; min-height: unset; }
   .agent-content { padding: 25px; }
   .agent-status { font-size: 7px; letter-spacing: 3px; }
@@ -685,4 +666,4 @@ button { font: inherit; border: 0; background: none; cursor: pointer; }
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
-}
+     }
